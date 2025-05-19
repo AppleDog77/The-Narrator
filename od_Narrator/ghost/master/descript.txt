@@ -23,7 +23,8 @@ kero.name,Stanley
 //You may be wondering why there's both craftman and craftmanw. Well, craftmanw is for non-alphanumeric characters like Japanese, Chinese, Korean, Russian, Arabic, things like that. So if your name is, say, 大嶋啓之, then you'd want to put that in craftmanw. Then you'd put your name in alphanumeric characters in craftman. If you want, you can delete craftmanw if you're not going to use it. Don't delete craftman though.
 
 craftman,Odie
-craftmanurl,https://odiesocean.wordpress.com/
+craftmanw,Odie
+craftmanurl,https://ladybug-lane.neocities.org/
 
 
 //This is coding stuff, don't touch it.

@@ -22,9 +22,9 @@ OnTranslate
  	_talk = REPLACE(_talk, "Anchor 2", "\_a[anchor2]Anchor 2\_a")
  	_talk = REPLACE(_talk, "Anchor 3", "\_a[anchor3]Anchor 3\_a")
  	_talk = REPLACE(_talk, "Skip", "sfdkjnxjif")
-	
+		//This is the bit that runs embedded elements in script input
 		if reference1 == "" && reference2 == "" { //send input box : no event (ref2) , no special flag (ref1)
-            EVAL('"' + REPLACE(_talk,'"','" + CHR(0x22) + "') + '"')
+            EVAL('"' + REPLACE(_talk,'"','""') + '"')
         }
         else { //event result from ghost
             TOSTR(_talk)

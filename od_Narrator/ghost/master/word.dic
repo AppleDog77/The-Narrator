@@ -478,7 +478,7 @@ lessonkor
 	"자본주의(ja-bon-ju-yi),capitalism"
 }
 
-//Written by Zichqec https://zichqec.github.io/s-the-skeleton/
+//Written by Zichqec https://ukagaka.zichqec.com/
 
 //To call the function, you can either call the function in your code like this:
 //Mock("some text")
@@ -532,7 +532,7 @@ Mock
     _output
 }
 
-//Written by Zichqec https://zichqec.github.io/s-the-skeleton/
+//Written by Zichqec https://ukagaka.zichqec.com/
 
 //If this all looks scary to you, no worries! All you need to do is set a few options in OnStartWordSearch, set up dialogue in WordSearchDialogue, and then add your own pool of words for it to choose from in WordSearchWords. If it gives you any trouble, let me know!
 
@@ -1233,7 +1233,7 @@ CreateWordSearch //:deargodhelpme:
 	}
 }
 
-//Written by Zichqec https://zichqec.github.io/s-the-skeleton/index.html
+//Written by Zichqec https://ukagaka.zichqec.com/index.html
 
 OnStartHangman //Sets up starting variables
 {
@@ -1446,7 +1446,7 @@ OnWordSearchQuit
 	"\_q\n\![*]\q[Play again,OnStartWordSearch]  \![*]\q[Play something else,BACKTOMENU]\n\![*]\q[I'm done,cancelnodialogue]\e"
 }
 
-//Written by Zichqec https://zichqec.github.io/s-the-skeleton/index.html
+//Written by Zichqec https://ukagaka.zichqec.com/index.html
 
 OnStartRPS
 {
@@ -1565,7 +1565,7 @@ OnManQuit
 	"\0\s[0]Quitting, hm? That's...\w5 alright. Hope you don't quit next time...\e"
 }
 
-//Written by Zichqec https://zichqec.github.io/s-the-skeleton/
+//Written by Zichqec https://ukagaka.zichqec.com/
 
 //To call the function, you can either call the function in your code like this:
 //Capitalize(SomeEnvelope) or Capitalize("some text")
@@ -1579,7 +1579,7 @@ Capitalize
 	_argv[0] = INSERT(_argv[0],0,TOUPPER(_buffer)) //Making the character in _buffer uppercase and inserting it back into _argv[0]
 	_argv[0] //Returns the capitalized word
 }
-//Written by Zichqec https://zichqec.github.io/s-the-skeleton/
+//Written by Zichqec https://ukagaka.zichqec.com/
 
 //Main game window
 OnJuniorJumble

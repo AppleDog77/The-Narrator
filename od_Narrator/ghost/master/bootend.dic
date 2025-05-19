@@ -402,9 +402,16 @@ OnClose
 
 //This will run when you minimize them. Replace with what you like.
 
- OnWindowStateMinimize
- {
+OnWindowStateMinimize
+{
+ if stanleymode == 1
+	{
+	"\0\s[0]\1\s[11][Where are we going?]\e"
+	}
+ else
+	{
 	"\0\s[0]Where am I going?\e"
+	}
 }
 
 
@@ -413,8 +420,15 @@ OnClose
 //This will run when you minimize them and then bring them back up. Replace with what you like.
 
 OnWindowStateRestore
- {
+{
+ if stanleymode == 1
+	{
+	"\1\s[11]\0\s[0]That was...\w8 strange. It felt like a rather cramped void...\1\s[11][Yeah... that waz weird...]\e"
+	}
+ else
+	{
 	"\0\s[0]That was...\w8 strange. It felt like a rather cramped void...\e"
+	}
 }
 
 

@@ -20,7 +20,8 @@ charset,UTF-8
 type,shell
 name,TheNarrator
 craftman,odie
-craftmanurl,https://odiesocean.wordpress.com/
+craftmanw,Odie
+craftmanurl,https://ladybug-lane.neocities.org/
 
 
 //Balloon Co-ordinates

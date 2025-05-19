@@ -27,7 +27,7 @@ On_username
 On_homeurl
 {
 
-//	"https://odiesocean.wordpress.com/downloads/" <-- a real URL, but not one that'll update anything automatically. Go there for rare downloads and backup the original files anyway when translating though!
+//	"https://ladybug-lane.neocities.org/downloads" <-- a real URL, but not one that'll update anything automatically. Go there for rare downloads and backup the original files anyway when translating though!
 //	"http://www.somekindofwebhost.com/yourghostsdirectory/nothappening.hmlt" kept for funnies
 // https://AppleDog77.github.io/AppleDog77.github.io/Updates/od_Narrator/
 //"https://raw.githubusercontent.com/AppleDog77/AppleDog77.github.io/main/Updates/od_Narrator/"
@@ -150,13 +150,13 @@ On_sakura.portalsites
 	--
 	"%ASC(1)https://stanleyparable2.com/#%ASC(2)"
 	--
-	"Odie's Ocean (Author's site)"
+	"Ladybug Lane (Author's site)"
 	--
-	"%ASC(1)http://odiesocean.wordpress.com/%ASC(2)"
+	"%ASC(1)https://ladybug-lane.neocities.com/%ASC(2)"
 	--
-	"Magic Lunar Petz"
+	"Magic Lunar Petz (Author's Petz site)"
 	--
-	"%ASC(1)http://appledog77.github.io/%ASC(2)"
+	"%ASC(1)https://appledog77.github.io/%ASC(2)"
 	//You get the idea. You can add more links or take them away as you like following this basic formula.
  }
 
