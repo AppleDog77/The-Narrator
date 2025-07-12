@@ -18,10 +18,7 @@
 OnTranslate
 	{
 	_talk = reference0
- 	_talk = REPLACE(_talk, "events", "\_a[anchor1]events\_a")
- 	_talk = REPLACE(_talk, "Anchor 2", "\_a[anchor2]Anchor 2\_a")
- 	_talk = REPLACE(_talk, "Anchor 3", "\_a[anchor3]Anchor 3\_a")
- 	_talk = REPLACE(_talk, "Skip", "sfdkjnxjif")
+ 	_talk = REPLACE(_talk, "events", "\_a[skip]events\_a")
 		//This is the bit that runs embedded elements in script input
 		if reference1 == "" && reference2 == "" { //send input box : no event (ref2) , no special flag (ref1)
             EVAL('"' + REPLACE(_talk,'"','""') + '"')
@@ -48,17 +45,9 @@ OnAnchorSelect
 	{
 	case reference0 //case is a unique thing that only really shows up in anchor.dic, and it basically sets up reference0 for evaluation to see if matches any of the below criteria, which are all tagged with when. You can read more about this on the coding page on the walkthrough site. You can add as many things here as you want to set up above as long as you follow the basic format.
 		{
-			when "anchor1" //if the link is this value
+			when "skip" //if the link is this value
 			{
 				"\0\s[0]Oh, um, I'm not sure I wish to talk about that in depth,\w8 but if you insist: in response to particular negative reviews, I decided to create a skip button that would skip my narration if I was rambling on and on about something. \s[4]Whenever Stanley pushed it though, it would skip further and further in time, and Stanley would freeze while it was skipping, so I couldn't talk with him, or interact with him, or anything, and it basically drove me insane. That's the summary of what happened. \s[0]Back to the story...\w8\w8\![raise,OnStory,skipexplained]\e"
-			}
-			when "anchor2" //if the link is this value
-			{
-				"\0\s[0]This dialogue is for when Anchor 2 is clicked.\e"
-			}
-			when "anchor3" //if the link is this value
-			{
-				"\1\s[10]This dialogue is for when Anchor 3 is clicked.\e"
 			}
 		}
 	}

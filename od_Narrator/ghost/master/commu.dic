@@ -190,7 +190,39 @@ OnStartTalking
 	}
 	else //If no ghosts are open.
 	{
-
 		"\0\s[0]...Oh. No one's there. Why did you click the option then? \s[9]Was it an attempt to trick me into talking to nobody?\e"
+	}
+}
+
+OnSpectrePlugin.Surface
+{
+	if reference0 == "normal"; "\s[0]"
+	elseif reference0 == "embarrassed"; "\s[1]"
+	elseif reference0 == "surprised"; "\s[2]"
+	elseif reference0 == "anxious"; "\s[3]"
+	elseif reference0 == "discouraged"; "\s[4]"
+	elseif reference0 == "smile"; "\s[6]"
+	//elseif reference0 == "relieved"; "\s[4]"
+	elseif reference0 == "angry"; "\s[7]"
+	//elseif reference0 == "sweat"; "\s[9]"
+	//elseif reference0 == "indignant"; "\s[3]\i[6]"
+	elseif reference0 == "thinking"; "\s[8]"
+	elseif reference0 == "unamused"; "\s[9]"
+}
+
+OnSpectrePlugin.ConfirmCalibration
+{
+	"\![raiseplugin,Spectre,OnCustomCalibrationConfirm,relieved,sweat,indignant]"
+}
+
+OnSpectrePlugin.Possession
+{
+	if stanleymode == 1
+	{
+		"\0\s[0]Uh, Stanley? Do you...\w8\s[3]feel something strange in the air? And it's not an unusually high level of bumpscosity or anything like that?\1\s[11][Well come to think of it, ive been feeling odd for sometime now... i thought it was just stomachache tho.]\0\s[0]\n\n[half]I suppose it could be just a strange new bumpscosity level that we have not felt before."
+	}
+	else
+	{
+		"\0\s[0]Uh, %(username)? Do you...\w8\s[3]feel something strange in the air?\w8 And it's not an unusually high level of bumpscosity or anything like that?\w9\w8 \s[8]...I suppose it could be just a strange new bumpscosity level that I've not felt before."
 	}
 }

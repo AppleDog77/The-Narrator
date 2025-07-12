@@ -1,4 +1,4 @@
-//Converted by olddef2newdef, by Zichqec. If there are errors in the conversion, contact Zichqec at https://zichqec.github.io/s-the-skeleton/ for assistance
+//Converted by olddef2newdef, by Zichqec. If there are errors in the conversion, contact Zichqec at https://ukagaka.zichqec.com/ for assistance
 
 version,1
 
@@ -123,11 +123,6 @@ animation4.pattern2,overlay,-1,100,0,0
 
 surface7
 {
-animation0.interval,random,4
-animation0.pattern1,overlay,1301,0,0,0
-animation0.pattern2,overlay,1302,100,0,0
-animation0.pattern3,overlay,-1,50,0,0
-
 animation1.interval,talk,4
 animation1.pattern0,alternativestart,[2.3.4]
 

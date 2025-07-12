@@ -51,6 +51,10 @@ Select.livin
 	if stanleymode == 1
 	{
 	"\0\s[6]I self-published a novel on my site, and it's been getting lots and lots of positive reviews!\1\s[11][I read it. It was... interesting.]\e"
+	
+	"\0\s[6]Well, I do love surfing the World Wide Web and exploring your computer.\e"
+
+	"\0\s[6]Living on your computer's been fairly nice, I suppose.\e"
 	}
 	else
 	{
@@ -82,6 +86,10 @@ Select.livin
 		elseif narrFeelings >= 100
 		{
 		"\0\s[6]I self-published a novel on my site, and it's been getting lots and lots of positive reviews!\e"
+		
+		"\0\s[6]Well, I do love surfing the World Wide Web and exploring your computer.\e"
+		
+		"\0\s[6]Living on your computer's been fairly nice, I suppose.\e"
 		}
 		else
 		{
@@ -305,11 +313,11 @@ OnStory //His backstory, woo!
     if reference0 == "full"
     {
 	stanleymode = 1
-    "\0\s[0]\b2...\w8I suppose I can tell you my long and sordid tale now.\w8 As far back as I can recall, I've always been a narrator, a storyteller.\w8 My greatest work yet has been\f[bold,true] The Stanley Parable.\f[bold,false]\w8\n\n But even before it, I've been narrating all sorts of stories! Adventure, tragic, comedic, strange, even romantic.\w8 One day though, I started to wonder: what if I were to narrate my own story? But I didn't think I had one yet./
+    "\0\s[0]\b2...\w8I suppose I can tell you my long and sordid tale now.\w8 As far back as I can recall, I've always been a narrator, a storyteller.\w8 My greatest work yet has been\f[bold,true] The Stanley Parable.\f[bold,false]\w8\n\n But even before it, I've been narrating all sorts of stories! Adventure, tragic, comedic, strange, even romantic.\w8 One day though, I started to wonder:\w8 what if I were to narrate my own story? But I didn't think I had one yet. /
 	I didn't think I had a grand narrative, or that my choices mattered at all...\w8\n\n So I decided to make my very own story, with help from Davey Wreden and William Pugh. As it was originally a Half-Life mod, it was uploaded to ModDB.\w8\n\n Upon reading the reviews, I felt all sorts of emotions.../
 	\w8\x\b2\c \s[6]Some praised the game for its insightful and witty commentary, into the nature of video game structure, and its examination of structural narrative tropes.\w5\s[4] Some didn't like the game that much though,\w8 claiming the set design was bland and ugly...\w8 that was really my introduction to criticism.\w8\n\n Then a couple years later,\s[0] I took the game's criticism into account and tried to make the game better, with help from Galactic Cafe. Stanley really came into his own in the remake...\w8 In the beginning of it all, we weren't exactly on good terms.../
 	\w7 The 2013 remake was unexpectedly much more complicated than the original, but it got lots more positive reviews, so in the end, I suppose I was glad for it.\w8 But there were certain negative reviews, which I had to forget, and maybe I forgot too well, which led to certain...\w8 events later on...\w8\x\c\b2Anyway, \s[6]the game was a resounding success! It got many awards such as a BAFTA Video Games Award Nomination in 2014. I have such fond memories of that time...\w8 Over the years, I started to grow more fond of my-\w5 the protagonist of the story.\w8 And I think he started to tolerate my presence a little more, too.\w8\n\n/
-	\s[0]Then Ultra Deluxe was announced in 2019 by Crows Crows Crows, just when I thought for sure there were going to be no more updates! But when it finally released in 2022, after many delays, I was...\w8\s[9] disappointed, to say the least. All it contained was an hour of new elevator content, nothing else. I had half a mind to complain on Twitter.\x\w8\s[0]\c But instead, I invited Stanley to my Memory Zone, and reminisced with him about the good ol' days of 2013./
+	\s[0]Then Ultra Deluxe was announced in 2019 by Crows Crows Crows, just when I thought for sure there were going to be no more updates! But when it finally released in 2022, after many delays, I was...\w8\s[9] disappointed, to say the least. All it contained was an hour of new elevator content, nothing else. I had half a mind to complain on Twitter.\x\w8\s[0]\c But instead, I invited Stanley to my Memory Zone, and reminisced with him about the good ol' days of 2013. /
 	\w8\s[6]Our friendship grew from then on...\w8\s[0]\w8\x\c I assume you know the rest, as you've downloaded me, which means you've played the game \f[bold,true]The Stanley Parable: Ultra Deluxe\f[bold,false], right? If not, stop whatever you're doing,\w8 purchase it (if you haven't already, of course),\w8 \s[6]and \f[bold,true]play it!\f[bold,false]\w8\s[0]/
 	\x\w8\w9\w8\s[0]\c...Wait a moment. I can hear something...\w8 Is that...?\w8 Did it work? S-\w8 Stanley?\e"
     }

@@ -537,7 +537,7 @@ MouseDoubleClickSakura
 		"\0\s[0]Why are you pushing my buttons?\e"
 		"\0\s[0]Sta-\w8\s[9] %(username), stop pushing my buttons!\e"
 		"\0\s[0]Hey! Be careful; I don't even know what these buttons do!\e"
-		"\0\s[0]Looks like you're bored, and dangerously so! %(envelope)\e"
+		"\0\s[0]Looks like you're bored, and dangerously so! %(suggestions)\e"
 		"\0\s[0]%(username) seemingly had nothing better to do than to push my buttons again and again.\w8 %(Capitalize(nomPro)) had nothing going on in %(posPro) life.\w8 It looked like %(nomPro) had far too much time on %(posPro) hands.\w8 %(boredsuggest)\e"
  	}
  	elseif reference4 == "Nottub"

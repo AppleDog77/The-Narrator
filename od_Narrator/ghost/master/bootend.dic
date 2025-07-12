@@ -68,12 +68,12 @@ OnFirstBoot
 	
 	if reference0 > 0
  	{
-		"\![enter,passivemode]\0\s[0]...Wait, what?\w8\n\n[half] Did it work?\w8\n\n[half]...Wait, I seem to have a memory of this particular computer...\x\w8\0\c\s[0]Nevermind.\![timerraise,1000,1,OnTeachName]\e"
+		"\t\1\s[-1]\0\s[0]...Wait, what?\w8\n\n[half] Did it work?\w8\n\n[half]...Wait, I seem to have a memory of this particular computer...\x\w8\0\c\s[0]Nevermind.\![timerraise,1000,1,OnTeachName]\e"
 	}
 	elseif reference0 == 0
  	{
  		{
- 		"\![enter,passivemode]\0\s[0]...Wait, what?\w8\n\n[half] Did it work? User, can you hear me?\w8\n\n[half]...Wait, is this one of those text-based games? Can you at least read me?\x\w8\0\c\s[0]Hm? Who are you?\![timerraise,1000,1,OnTeachName]\e"
+ 		"\t\1\s[-1]\0\s[0]...Wait, what?\w8\n\n[half] Did it work? User, can you hear me?\w8\n\n[half]...Wait, is this one of those text-based games? Can you at least read me?\x\w8\0\c\s[0]Hm? Who are you?\![timerraise,1000,1,OnTeachName]\e"
 		}
  	}
 }
@@ -137,7 +137,7 @@ OnBoot
 	passsec = 0
 	BootReset
 	
- 	"\0\s[0]\1\s[10]" //This sets them up in their neutral pose for now.
+ 	"\0\s[0]\1\s[-1]" //This sets them up in their neutral pose for now.
 	
 	//If you don't want to deal with individual day messages when you boot them, you can delete everything down to the end bracket for OnBoot (use Notepad++'s bracket tracking abilities to find where it is!) and instead add "%(normalboottalk)" to the end of the snip of dialogue up there that sets them up in their neutral poses. I'm pretty sure that should shortcut it properly. Simplified, it'd look like...
 	//OnBoot
@@ -174,16 +174,47 @@ OnBoot
 	//***********************************************************************
 	
 	{
+				if narrMood >= 50
+				{
 				"\0\s[0]Today is April 27th. For some reason that date seems to be significant...\e"
+				}
+				else
+				{
+				"\0\s[0]Today is April 27th... *sigh*\e"
+				}
 	}
 	elseif dayslot == "10month 17day"
 	{
+				if narrMood >= 50
+				{
 				"\0\s[0]Today is October 17th. For some reason that date seems to be significant...\e"
+				}
+				else
+				{
+				"\0\s[0]Today is October 17th... *sigh*\e"
+				}
 	}
 	elseif dayslot == "07month 31day"
 	{
-				"\0\s[0]Today is July 31st. For some reason that date seems to be significant...\e"			
-				//You can see how these basically work. You can add in new elseif statements along these same lines with your own dayslots if you want to have them say things for all sorts of days. You can also change these existing ones I put in as examples to other dates, like your character's birthdays, perhaps. This is up to you! If you don't care about this, you can delete all the elseifs and just leave the one for the user's birthday.
+				if narrMood >= 50
+				{
+				"\0\s[0]Today is July 31st. For some reason that date seems to be significant...\e"
+				}
+				else
+				{
+				"\0\s[0]Today is July 31st... *sigh*\e"
+				}
+	}
+	elseif dayslot == "10month 31day"
+	{
+				if narrMood >= 50
+				{
+				"\0\s[0]Halloween is my second favourite holiday after Christmas. I like to be spOoOoOoky now and then...\e"
+				}
+				else
+				{
+				"\0\s[0]BOoOoOo...\e"
+				}
 	}
 	else
 	{
@@ -402,16 +433,9 @@ OnClose
 
 //This will run when you minimize them. Replace with what you like.
 
-OnWindowStateMinimize
-{
- if stanleymode == 1
-	{
-	"\0\s[0]\1\s[11][Where are we going?]\e"
-	}
- else
-	{
+ OnWindowStateMinimize
+ {
 	"\0\s[0]Where am I going?\e"
-	}
 }
 
 
@@ -420,14 +444,14 @@ OnWindowStateMinimize
 //This will run when you minimize them and then bring them back up. Replace with what you like.
 
 OnWindowStateRestore
-{
- if stanleymode == 1
+ {
+	if stanleymode == 1
 	{
-	"\1\s[11]\0\s[0]That was...\w8 strange. It felt like a rather cramped void...\1\s[11][Yeah... that waz weird...]\e"
+		"\1\s[11]\0\s[0]That was...\w8 strange. It felt like a rather cramped void...\1\s[11][Yeah but, it was actually kinda peaceful...]\e"
 	}
- else
+	else
 	{
-	"\0\s[0]That was...\w8 strange. It felt like a rather cramped void...\e"
+	"\1\s[-1]\0\s[0]That was...\w8 strange. It felt like a rather cramped void...\e"
 	}
 }
 
@@ -460,7 +484,7 @@ OnGhostChanging
 
 OnGhostChanged
 {
-	"\0\s[0]\1\s[10]" //this sets up their default poses
+	"\0\s[0]\1\s[-1]" //this sets up their default poses
 	--
 	if reference0 == "Narrator" //As above, this should be the name of your ghost as in install.txt or descript.txt.
 	{
@@ -472,113 +496,5 @@ OnGhostChanged
 		"\0\s[0]Goodbye, %(reference0). Hope to see you never.\e"
 
 		//Again, %(reference0) in this function is the name of the ghost in question. As above, replace these two lines of dialogue what what'd be appropriate for your ghost.
-	}
-}
-
-
-//--OnShellChanging
-
-//This will run when you change your ghost's shell. If you don't have any other shells for your ghost, you can safely ignore this but don't delete it, you might as well keep it just in case. I probably won't add a different shell to this template because shells are a lot of work ugh, but for the sake of argument, let's pretend I did.
-
-OnShellChanging
- {
-	if reference0 == "Hypothetical Shell that doesn't actually exist" //reference0 in OnShellChanging is the name of the shell you're swapping to. It should be defined in the descript.txt file in your shell folder. If you do have alternate shells, put in the right name here.
-	{
-	"\1\s[10]This dialogue is specifically for changing to this particular shell.\w8\0\w8\s[9]It totally exists.\w8\e"
-	//Then rewrite this line as appropriate.
-	}
-	else //if you don't have any specific dialogue for a specific shell
-	{
-	"\0\s[0]This dialogue is for changing shells.\w8\1\s[10]Sure is.\w8\e"
-	
-	"\1\s[10]This is another bit of dialogue for changing shells.\w8\0\s[8]I wonder how many people will actually have multiple shells?\e"
-	
-	//Rewrite these two lines as you need.
-	}
- }
- 
- 
- //--OnShellChanged
- 
- //The sister to the above, this is the dialogue after you've changed the shell.
- 
-OnShellChanged
- {
- 	if reference0 == "GT Default Shell" //Again, this is the name of your shell as you put in the descript.txt file for that shell.
- 	{
- 		nowshell = "master" //This is the folder name for your shell. Not the same as the above! 
-		
- 		"\0\s[0]This dialogue is for switching to our default shell.\w8\1\s[18]No really, will anyone actually put in the work to use these functions?\w8\0\s[9]\n\n[half]Shh.\e"
-		//Replace dialogue as required.
- 	}
- 	elseif reference0 == "Hypothetical Shell that doesn't actually exist" //You can use as many elseifs for as many shells as you've got.
- 	{
- 		nowshell = "totallyrealshell"
-		
- 		"\0\s[0]This dialogue is for switching to that hypothetical shell.\e"
-		
- 		"\0\s[0]This is another bit of dialogue for switching to this hypothetical shell.\w8\1\s[18]Man if you actually use this, you should tell Zar, it'll blow her mind.\w8\0\n\n[half]\s[9]Shut up, we're not supposed to be in-character here.\e"
-		//Replace these bits with whatever you have in mind.
- 	}
- 	elseif reference0 == "Another totally real shell wow"
- 	{
- 		nowshell = "thiswouldbesomuchwork"
-		
- 		"\1\s[10]This dialogue is after we've switched to another totally real shell.\e"
-		//Replace this as well.
- 	}
- 	else //For any shell without a specific name, or if you don't want to bother with individual responses to a shell.
- 	{
-	"\0\s[0]This dialogue is after we've changed our shell to %(reference[0]).\w8\1\s[18]How many shells you got?\e"
-	
-	//Note the %(reference[0]) here! This time that should store the name of whatever shell you're switching to. Replace this bit of dialogue as you need.
-	}
- }
-
-
- //--OnDressupChanged
- 
- //This runs whenever you fiddle with their clothing via the dress-up option, if you've set any for your ghost. Make sure to read the clothing page on the walkthrough for details on how clothes work! This template won't have any because Girl and Triangle move around too much for it, but if your ghost is mostly stationary, clothes are an option. In that case, these functions are for you. For now, I'll fill this in with some hypothetical items. Replace the dialogue below with whatever you need.
-
-OnDressupChanged
-{
-if reference0 == 0 //in OnDressupChanged, reference0 refers to the character, therefore this is evaluating which character in question is getting dressed up. 0 is the main character, as you know from the walkthrough by now.
-	{
-	if reference1 == "Clothing for Girl" //This is the name of the clothing item in the descript.txt file, I'm pretty sure.
-		{
-			if reference2 == 1 //This checks if you're putting it on.
-			{
-			"\0\s[0]You put my clothing item on me.\w8\1\s[19]lol like zar would ever bother with clothes for a ghost.\w8\0\s[9]\n\n[half]Shut up dude you're going to get us in trouble.\e"
-			}
-			else // This checks if you're taking it off.
-			{
-			"\0\s[0]You took the clothing item off.\e"
-			}
-		}		
-	}
-else //if reference0 isn't the main character, then it has to be the side character.
-	{
-	if reference1 == "some kind of clothing for triangle??" //The name of the item of clothing in the descript.txt file in your shell folder.
-		{
-			if reference2 == 1 //If you put it on
-			{
-			"\1\s[10]I'm wearing some kind of clothing.\w8\0\s[8]Maybe a hat?\e"
-			}
-			else //When you take it off.
-			{
-			"\1\s[10]You took off some kind of clothing.\e"
-			}
-		}
-	elseif reference1 == "i'm gonna say a propeller beanie" //As you've seen above, you can use elseifs to expand the list if you have more than one item.
-		{
-			if reference2 == 1 //if you're putting it on
-			{
-			"\1\s[10]You put a hat on me.\w8\0\s[6]lol.\w8\1\n\n[half]\s[11]Shaddap.\e"
-			}
-			else //when you take it off
-			{
-			"\1\s[10]You took off the hat.\e"
-			}
-		}
 	}
 }

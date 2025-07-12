@@ -37,6 +37,7 @@ Ver 1.1 - Appended blinking to other surfaces, fixed some typos, and added some 
 Ver 1.2 - Stanley returns! Added unlockable secondary character, who only likes pets on the head, not the face. Also added more emotions for the Narrator, some extra dialogue, and tweaked the relationship and mood stuff. (Wed, May 3, 2023)
 Ver 1.3 - Tweaked the relationship and mood stuff again: specifically, every hour his feelings and mood increase by 5 now, giving him a wallpaper or screensaver increases 'em by 5, and playing games with him increases the relationship level and mood more depending on the difficulty of the game. He now remembers if you've reset him or not. Added a couple of new menu options to Stanley. Also added more dialogue, and made some dialogue require a certain friendliness level or mood level. (Sat, Aug 27, 2023)
 Ver 1.4 - Added new dialogue including a new story by The Narrator, added a talking animation for the Narrator, and added more talk rates. (Mon, May 19, 2025)
+Ver 1.5 - Replaced passivemode with \t & \x. Added Idle between Dialogues function by Zichqec, Adventure Line to right click menu, Halloween boot-up dialogue, mood affecting special day boot up dialogue, Spectre custom calibration and responses, more Ask about life responses, and random dialogue. Fixed surface calls in OnSurfaceRestore and other places, like randomtalk. Changed name of a wordgroup to Suggestions, and merged hobbies wordgroups into one. Bundled Twinkling Galaxy Hues balloon. (Sat, Jul 12, 2025)
 
 ...
 

@@ -51,7 +51,7 @@ if stanleymode == 1
 		
 		"\1\s[11][Check out this %(opinions) fanfiction on AO3...]\0\s[0]Oh? Let's see it...\w8 It's\w8 %(compliments)!\e"
 		
-	    "\0\s[0]You know Stanley, I really dislike it when in stories, the ending is not cathartic. An ending can be sad, but it has to be satisfying in some way.\1\s[11][...]\w8\w9\w8\0\s[3]\n\n[half]Stanley, don't feel guilty! That particular ending was...\w7\s[4] not very good. I don't even know where it came from! I don't remember making it...\w8\s[0] Anyway, tragedies can be satisfying, but usually they are not. That's all.\e"
+	    "\0\s[0]You know Stanley, I really dislike it when in stories, the ending is not cathartic. An ending can be sad, but it has to be satisfying in some way.\1\s[11][...]\0\s[3]Stanley, don't feel guilty! That particular ending was...\w7\s[4] not very good. I don't even know where it came from! I don't remember making it...\w8\s[0] Anyway, tragedies can be satisfying, but usually they are not. That's all.\e"
 		
 		"\1\s[11][Check out this cool program I downloaded! It many buttons to push! When I push one, more buttons appear!]\0\s[3]Oh dear... buttons are filling up the screen completely! Close the program now, Stanley!\1\s[11]\n\n[half][But, but, I want to push the buttons!...\w8 Fine, I'll close it... But it may take a while to close all these buttons...]\e"
 
@@ -72,23 +72,25 @@ if stanleymode == 1
 
 		"\0\s[3]Stanley, um...\w8\1\s[11][What?]\w8\0\s[0]\n\n[half]S-\w8 Stanley, did you like the Parable?\1\s[11]\n\n[half][Well enough I suppose. I mean, at first I really liked it, then when I realized there was no real escape I began to hate it, but then after a while I didn't particularly care about it, then a few years later or so I started to like it again...\w8 The point is, without you it'd have been a complete disaster...]\0\s[6]\n\n[half]Um, great to hear, Stanley!\e"
 
-		"\0\s[6]\b2Stanley...\w8\1\s[11][What?]\w8\0\s[0]\n\n[half]Stanley, I'm going to tell you a brand new story, all about you!\w8\1\s[11]\n\n[half][Hmm...?\w5 OK...\w8 I'll listen to it, and see if it's any good.]\w8\0\s[0]\n\n[half]Of course it will be good! Just listen.\w8 There once was a man named Stanley.\w8 Stanley worked at the best flower shop in town, Bonnie's Bouquets.\w8 Every day\w8 of every month\w8 of every year,\w8 Stanley would drive to the shop and take stock of his inventory.\w8 A customer would arrive,\w8 and he would listen to their request and create a customized bouquet.\w8 One would think that would be boring, but Stanley loved smelling the flowers as he gave them to the customers.\w8 And Stanley was happy.\w8 Next door, there was a cafe,\w8 known as Galactic Cafe.\w8 The barista at the cafe loved serving coffee to the customers, and chatting to them about his lovely stories and ideas.\w8 He looked outside the window between orders and sighed wistfully as the fall leaves drifted by.\w8 One day their lives would change forever...\e:chain=bonnie"
+		"\0\s[6]\b2Stanley...\w8\1\s[11][What?]\w8\0\s[0]\n\n[half]Stanley, I'm going to tell you a brand new story, all about you!\w8\1\s[11][Hmm...?\w5 OK...\w8 I'll listen to it, and see if it's any good.]\w8\0\s[0]\n\n[half]Of course it will be good! Just listen.\w8 There once was a man named Stanley.\w8 Stanley worked at the best flower shop in town, Bonnie's Bouquets.\w8 Every day\w8 of every month\w8 of every year,\w8 Stanley would drive to the shop and take stock of his inventory.\w8 A customer would arrive,\w8 and he would listen to their request and create a customized bouquet.\w8 One would think that would be boring, but Stanley loved smelling the flowers as he gave them to the customers.\w8 And Stanley was happy.\w8 Next door, there was a cafe,\w8 known as Galactic Cafe.\w8 The barista at the cafe loved serving coffee to the customers, and chatting to them about his lovely stories and ideas.\w8 He looked outside the window between orders and sighed wistfully as the fall leaves drifted by.\w8 One day their lives would change forever...\e:chain=bonnie"
+
+		"\0\s[7]Stanley, don't you hate it when there's a dratted missing quotation mark you accidentally make when you're sleepy, and your beta reader points out lots of them in your work? \1\s[11][yeah but a missing parenthesis in code is even worse; it breaks the entire program - f***in breaks!]\0\s[9]\n\n[half]Sorry Stanley, but I had to censor that for the reader. \s[0]Anyway, yes, I agree it's much worse, but a missing quotation mark can easily ruin the flow of the story..."
 	}
-else //1 - Embarrassed, 2 - Surprised, 3 - Worried, 4 - Sad, 5 - Determined, 6 - Happy, 7 - Angry, 8 - thoughtful, 9 - Unamused
+else //1 - Embarrassed, 2 - Surprised, 3 - Worried, 4 - Sad, 5 - Determined, 6 - Happy, 7 - Angry, 8 - Thoughtful, 9 - Unamused
 	{
 	"\0\s[0]%(username) continued to goof off on the computer instead of getting around to work %(nomPro) was putting off.\e"
 	
 	"\0\s[0]%(username) decided to actually go ahead and start working on %(posPro) project that %(nomPro) had been putting off for so long.\e"
 	
-	"\0\s[0]You look like you're bored, %(username).\w8\0\s[0] %(envelope)\e"
+	"\0\s[0]You look like you're bored, %(username).\w8\0\s[0] %(suggestions)\e"
 	
 	"\0\s[0]Hm, have you cleaned up your %(usersfolder) lately? I took a peek at it, and saw a few files that don't really belong there.\e"
 
 	"\0\s[0]You really should go ahead and organize your files at some point. Just set aside a weekend or two and start organizing them by any method you desire.\e"
 
-	"\0\s[0]Maybe you should take a break, %(username). You've been working for an awfully long time... Perhaps you should %(hobbies2)?\e"
+	"\0\s[0]Maybe you should take a break, %(username). You've been working for an awfully long time... Perhaps you should %(hobbies)?\e"
 
-	"\0\s[0]%(username) decided to take a break, as %(nomPro) had been working for an awfully long time... Perhaps you should %(hobbies2)?\e"
+	"\0\s[0]%(username) decided to take a break, as %(nomPro) had been working for an awfully long time... Perhaps you should %(hobbies)?\e"
 
 	"\0\s[5]Alright %(username), I'm currently writing a completely new story. It's not done yet, so please don't peek.\e"
 
@@ -103,6 +105,8 @@ else //1 - Embarrassed, 2 - Surprised, 3 - Worried, 4 - Sad, 5 - Determined, 6 -
 	"\0\s[4]%(username), I've always liked seals. I always wanted to make a story called 'Stanley the Seal'...\w8 guess it won't happen now...\e"
 	
 	"\0\s[8]I could've sworn The Stanley Parable was released on consoles all the way back in 2013... Strange...\e"
+		
+	"\0\s[0]There's so much information on the World Wide Web! \n It can get a little overwhelming sometimes.\e"
 
 	"\0\s[7]%(username), these reviews are insidious and rotten.\nThis one says, 'The narrator was annoyingly smug jerk, to the point that after I beat the game in 10 minutes, I was more than happy to be rid of him, forever. Waste of money.' See? Rubbish, clearly.\e:chain=reviews"
 
@@ -117,10 +121,7 @@ else //1 - Embarrassed, 2 - Surprised, 3 - Worried, 4 - Sad, 5 - Determined, 6 -
 		{
 		"\0\s[8]You know something? I seem to have rather mixed feelings on the Adventure Line\f[sup,true]TM\f[sup,false]...\w8 On the one hand, me and Stanley,\w8 got into all sorts of fun adventures with it\f[sup,true]TM\f[sup,false]! But on the other...\w8\0\s[9] well, it\f[sup,true]TM\f[sup,false] kept ruining my story!\e:chain=advline"
 		}
-
-		"\0\s[0]There's so much information on the World Wide Web! \n It can get a little overwhelming sometimes.\e"
-		}
-
+		
 	//OKUAJUB: You can also put if checks inside a dialogue, so the dialogue changes depending on some variable.
 		{ //Setting up a little dialogue here where Snake can respond in different ways depending on how he feels about the user. This first set of brackets makes sure each "if" is contained in this one dialogue.
 		"\0\s[0]One day, for no reason at all, the Narrator asked himself: Do I like being on %(username)'s desktop?\n\n[half]" //This sets up the first line, which never changes. 
@@ -322,6 +323,7 @@ else //1 - Embarrassed, 2 - Surprised, 3 - Worried, 4 - Sad, 5 - Determined, 6 -
 		{
 		"\0\s[0]While I admit it's rather nice of you to keep the computer open for this long, maybe you should go to sleep at some point or another. \s[3]D-\w8don't worry about me; I've got projects to work on and various things to do...\e"
 		}
+	}
 }
 
 
@@ -465,6 +467,17 @@ OnSecondChange
  		{
 	 	passsec = passsec + 1
 		}
+	//This gets the time since the last dialogue ended, in seconds. SHIORI3FW.TalkEndTime is a variable that comes with YAYA as SHIORI
+	_since = GETSECCOUNT - SHIORI3FW.TalkEndTime
+	
+	//status is an inbuilt YAYA variable that has information on if the balloon is open, etc.
+	_balloonisopen = "balloon" _in_ status
+	
+	if _since % 15 == 0 && !_balloonisopen
+	{
+		//If you want to adjust how likely it is to change poses, change the number in the RAND. Higher numbers mean a lower chance for the pose to change.
+		if RAND(8) == 0; OnSurfaceRestore
+	}
 	if mikireflag == 0 && reference1 == 1
 	{
 		"\0\s[0]I seem to be in a strange void... Um..."
@@ -478,8 +491,7 @@ OnSecondChange
 	mikireflag = reference1 //reference1 is if the ghost is offscreen or not
 	if reference2 == 1
 	{
- 		//"\0\s[0]gay\e"
-		
+ 		//"\0\s[0]gay\e"	
 	}
  }
 
@@ -500,10 +512,12 @@ OnSurfaceRestore
 	if stanleymode == 1
 	{
 	"\0\s[0]\1\s[11]\e"
+	"\0\s[8]\1\s[11]\e"
 	}
 	else
 	{
-	"\0\s[0]\1\s[10]\e"
+	"\0\s[0]\1\s[-1]\e"
+	"\0\s[8]\1\s[-1]\e"
 	}
  }
 

@@ -70,6 +70,7 @@ internalenvelope
 		
 	  //***********************************************************************
 
+
 Happy
 {
 	narrFeelings += 5
@@ -82,7 +83,7 @@ Sad
 	"\0\s[0]"
 }
 
-envelope
+suggestions
 {
 	"I highly recommend you %(hobbies)."
 	"Perhaps you should %(hobbies)."
@@ -103,8 +104,8 @@ opinions
 
 boredsuggest
 {
-	"The Narrator suggested that %(nomPro) %(hobbiez)."
-	"Perhaps %(nomPro) should %(hobbiez)."
+	"The Narrator suggested that %(they) %(hobbies)."
+	"Perhaps %(they) should %(hobbies)."
 }
 
 compliments
@@ -317,20 +318,20 @@ hobbies
 	"drink some water"
 	"cook something"
 	"watch a %(genre) movie"
-	"catch up on your favourite TV show"
+	"catch up on a favourite TV show"
 	"play a game"
 	"play a game called The Stanley Parable"
 	"read a book"
 	"practice drawing"
 	"do something productive for once"
-	"work on one of your many projects"
 	"spend time with a friend"
 	"check the news"
-	"check your email"
+	"check email"
+	"work on a project"
 	"browse the internet"
 	"learn something new"
-	"organize your collection"
-	"stretch your legs a little"
+	"organize a collection"
+	"stretch the legs a little"
 	"go outside"
 	"go outside for 5-10 years"
 }
@@ -359,50 +360,6 @@ genre
 	"experimental"
 }
 
-hobbies2
-{
-	"have a snack"
-	"cook something"
-	"watch a %(genre) movie"
-	"catch up on your favourite TV show"
-	"play a game"
-	"play a game called The Stanley Parable"
-	"read a book"
-	"practice drawing"
-	"drink some water"
-	"spend time with a friend"
-	"check the news"
-	"check your email"
-	"browse the internet"
-	"learn something new"
-	"organize your collection"
-	"stretch your legs a little"
-	"go outside"
-	"go outside for 5-10 years"
-}
-
-hobbiez
-{
-	"have a snack"
-	"cook something"
-	"watch a %(genre) movie"
-	"catch up on %(posPro) favourite TV show"
-	"play a game"
-	"play a game called The Stanley Parable"
-	"read a book"
-	"practice drawing"
-	"drink some water"
-	"spend time with a friend"
-	"check the news"
-	"check %(posPro) email"
-	"browse the internet"
-	"learn something new"
-	"organize %(posPro) collection"
-	"stretch %(posPro) legs a little"
-	"go outside"
-	"go outside for 5-10 years"
-}
-
 flavours
 {
 	"banana"
@@ -429,9 +386,10 @@ comfort
 	"It'll be alright."
 	"Well, even though you can't exactly reset in the real world if something goes wrong, alas, I think everything will work out in the end."
 	"You are loved."
-	"\_a[https://www.tumblr.com/give-soup-please/685699074236809216/holy-shit-guys-i-commissioned-kevan-brighting-to]A Gift!\_a Go ahead and download this to your computer. \_a[https://xtendedview.com/how-to/download-songs-audio-from-tumblr/5585/]Here's how.\_a"
+	"\t\_a[https://www.tumblr.com/give-soup-please/685699074236809216/holy-shit-guys-i-commissioned-kevan-brighting-to]A Gift!\_a Go ahead and download this to your computer. \_a[https://xtendedview.com/how-to/download-songs-audio-from-tumblr/5585/]Here's how.\_a"
 }
-//This envelope in particular I think is fun. You can use this in dialogue to pretend like your ghost is looking through your user's files!
+
+//Zarla: This envelope in particular I think is fun. You can use this in dialogue to pretend like your ghost is looking through your user's files!
 
 usersfolder
 {
