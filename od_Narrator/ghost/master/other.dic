@@ -1,0 +1,460 @@
+OnTranslate
+{
+	_talk = reference0
+	
+	//This is what makes %(embedded_elements) work in script input
+	if reference1 == "" && reference2 == "" //If this is from the input box
+	{ //send input box : no event (ref2) , no special flag (ref1)
+		_talk = EVAL('"' + REPLACE(_talk,'"','""') + '"')
+	}
+	
+	//If you want to add anything to OnTranslate, like text replacement, I would put it after this point, generally. Just make sure it's before the TOSTR(_talk)
+	_talk = REPLACE(_talk, "events", "\_a[skip]events\_a")
+	TOSTR(_talk)
+}
+
+//This is just here so you can use anchors to link to websites if you want. You can link to websites with normal menu choice tags! If you do, a handy URL preview will show up in the balloon!
+OnAnchorSelect
+{
+	if "http://" _in_ reference0 || "https://" _in_ reference0; "\j[""%(reference0)""]"
+	else
+	{
+	case reference0
+		{
+			when "skip" //if the link is this value
+			{
+				"\0\s[0]Oh, um, I'm not sure I wish to talk about that in depth,\w8 but if you insist: in response to particular negative reviews, I decided to create a skip button that would skip my narration if I was rambling on and on about something. \s[4]Whenever Stanley pushed it though, it would skip further and further in time, and Stanley would freeze while it was skipping, so I couldn't talk with him, or interact with him, or anything, and it basically drove me insane. That's the summary of what happened. \s[0]Back to the story...\w8\w8\![raise,OnStory,skipexplained]\e"
+			}
+		}
+	}
+}
+
+//Hotkeys
+OnKeyPress
+{
+	if reference0 == "f1"; "\![open,readme]"
+	elseif reference0 == "t"; OnAiTalk
+	elseif reference0 == "r"; OnLastTalk
+}
+
+
+OnSecondChange
+ {
+	if passsec == 59
+ 		{
+	 	passsec = 0
+ 		passmin = passmin + 1
+		}
+ 	else
+ 		{
+	 	passsec = passsec + 1
+		}
+	//This gets the time since the last dialogue ended, in seconds. SHIORI3FW.TalkEndTime is a variable that comes with YAYA as SHIORI
+	_since = GETSECCOUNT - SHIORI3FW.TalkEndTime
+
+	//status is an inbuilt YAYA variable that has information on if the balloon is open, etc.
+	_balloonisopen = "balloon" _in_ status
+
+	if _since % 15 == 0 && !_balloonisopen
+	{
+		//If you want to adjust how likely it is to change poses, change the number in the RAND. Higher numbers mean a lower chance for the pose to change.
+		if RAND(8) == 0; OnSurfaceRestore
+	}
+}
+
+
+//Happens about 30 seconds after a script ends, by default, to bring them back to normal poses
+OnSurfaceRestore
+{
+	if stanleymode == 1
+	{
+	"\0\s[0]\1\s[11]\e"
+	"\0\s[8]\1\s[11]\e"
+	}
+	else
+	{
+	"\0\s[0]\1\s[-1]\e"
+	"\0\s[8]\1\s[-1]\e"
+	}
+}
+
+dayslot
+{
+	"%(month)month %(day)day"
+}
+
+season
+{
+	if hemisphere == "Southern"
+	{
+		case month
+		{
+			when 3-5; "Autumn"
+			when 6-8; "Winter"
+			when 9-11; "Spring"
+			others; "Summer"
+		}
+	}
+	else
+	{
+		case month
+		{
+			when 3-5; "Spring"
+			when 6-8; "Summer"
+			when 9-11; "Autumn"
+			others; "Winter"
+		}
+	}
+}
+
+//Happens when the ghost is unminimized. You can customize what surfaces are used here/if there's dialogue, but by default I've set it to just go to OnSurfaceRestore
+OnWindowStateRestore
+{
+	if stanleymode == 1
+	{
+		"\1\s[11]\0\s[0]That was...\w8 strange. It felt like a rather cramped void...\1\s[11][Yeah but, it was actually kinda peaceful...]\e"
+	}
+	else
+	{
+	"\1\s[-1]\0\s[0]That was...\w8 strange. It felt like a rather cramped void...\e"
+	}
+}
+
+OnSpectrePlugin.Surface
+{
+	if reference0 == "normal"; "\s[0]"
+	elseif reference0 == "embarrassed"; "\s[1]"
+	elseif reference0 == "surprised"; "\s[2]"
+	elseif reference0 == "anxious"; "\s[3]"
+	elseif reference0 == "discouraged"; "\s[4]"
+	elseif reference0 == "smile"; "\s[6]"
+	//elseif reference0 == "relieved"; "\s[4]"
+	elseif reference0 == "angry"; "\s[7]"
+	//elseif reference0 == "sweat"; "\s[9]"
+	//elseif reference0 == "indignant"; "\s[3]\i[6]"
+	elseif reference0 == "thinking"; "\s[8]"
+	elseif reference0 == "unamused"; "\s[9]"
+}
+
+OnSpectrePlugin.ConfirmCalibration
+{
+	"\![raiseplugin,Spectre,OnCustomCalibrationConfirm,relieved,sweat,indignant]"
+}
+
+OnSpectrePlugin.Possession
+{
+	if stanleymode == 1
+	{
+		"\0\s[0]Uh, Stanley? Do you...\w8\s[3]feel something strange in the air? And it's not an unusually high level of bumpscosity or anything like that?\1\s[11][Well come to think of it, ive been feeling odd for sometime now... i thought it was just stomachache tho.]\0\s[0]\n\n[half]I suppose it could be just a strange new bumpscosity level that we have not felt before."
+	}
+	else
+	{
+		"\0\s[0]Uh, %(username)? Do you...\w8\s[3]feel something strange in the air? And it's not an unusually high level of bumpscosity or anything like that?\w9\w8 \s[8]...I suppose it could be just a strange new bumpscosity level that I've not felt before."
+	}
+}
+
+//Network update url. Make sure you have a / on the end of the url or it will give a warning every time users try to update! If you don't plan to use network updates you can remove this
+//IF YOU'RE USING GITHUB FOR NETWORK UPDATES: DO NOT USE github.io URLS! It will cause you pain and suffering. USE raw.githubusercontent!!!
+//To get the raw.githubusercontent link super easy:
+//• Open your ghost's repo online
+//• navigate to the ghost's folder (the top level one, with install.txt, readme.txt, etc)
+//• Click on install.txt, or another text file on that level
+//• Once on that page, click the "raw" button. You should see the url now starts with raw.githubusercontent
+//• Copy that url exactly as is, but *leave off the "install.txt" or whatever file name at the end.*
+//Tada! That's your url! Make sure you test it! The dev palette and script/network log can help with that
+On_homeurl
+{
+"https://raw.githubusercontent.com/AppleDog77/The-Narrator/main/od_Narrator/"
+}
+
+//This bit of code is what makes menu options that don't start with On direct to Select.options instead. Remove or comment it if you prefer!
+OnChoiceSelect
+{
+	EVAL("Select.%(reference0)")
+}
+
+//Written by Zichqec https://ukagaka.zichqec.com/
+
+//To call the function, you can either call the function in your code like this:
+//Mock("some text")
+//Or in dialogue like this:
+//"%(Mock('some text'))"
+
+//Note that by default, it will produce a 'perfect' mock case, meaning that it will change between lower and uppercase every character. If you want a 'random' mock case (which is really just randomcase, but some people say mock case is better with some chaos), put a 1 as the second argument. That'd look like this: "%(Mock('some text',1))"
+
+//If you want to write an apostrophe in dialogue, write ## and it'll be replaced with an apostrophe
+
+Mock
+{
+	_argv[0] = REPLACE(_argv[0],"##","'") //Replaces ## with an apostrophe, change it if you like
+    _output = ""
+    if TOINT(_argv[1]) == 1 //Random mock case
+    {
+        for _i = 0; _i < STRLEN(_argv[0]); _i++
+        {
+            _let = SUBSTR(_argv[0],_i,1)
+            if RAND(2) == 1
+            {
+                _output += TOLOWER(_let)
+            }
+            else
+            {
+                _output += TOUPPER(_let)
+            }
+        }
+    }
+    else //Perfect mock case
+    {
+        for _i = 0; _i < STRLEN(_argv[0]); _i++
+        {
+            _let = SUBSTR(_argv[0],_i,1)
+			if _let == " "
+			{
+				_output += _let
+				continue
+			}
+            if _m % 2 == 0
+            {
+                _output += TOLOWER(_let)
+            }
+            else
+            {
+                _output += TOUPPER(_let)
+            }
+			_m++
+        }
+    }
+    _output
+}
+
+//Written by Zichqec https://ukagaka.zichqec.com/
+
+//To call the function, you can either call the function in your code like this:
+//Capitalize(SomeEnvelope) or Capitalize("some text")
+//Or in dialogue like this:
+//"%(Capitalize(SomeEnvelope))" or "%(Capitalize('some text'))"
+
+Capitalize
+{
+	_buffer = SUBSTR(_argv[0],0,1) //Storing the first character in _buffer
+	_argv[0] = ERASE(_argv[0],0,1) //Erasing the first character from _argv[0]
+	_argv[0] = INSERT(_argv[0],0,TOUPPER(_buffer)) //Making the character in _buffer uppercase and inserting it back into _argv[0]
+	_argv[0] //Returns the capitalized word
+}
+
+ghostver
+{
+	"v2.0.0"
+}
+//—————————————————————————————— Right click menu links ——————————————————————————————
+
+//Takes an array of alternating names and urls, and formats them for use with the right click menu
+FormatLinks : all
+{
+	for _i = 0; _i < ARRAYSIZE(_argv); _i++
+	{
+		_argv[_i] //Add the link/title
+		//Alternate between adding %ASC(1) or %ASC(2)
+		if _i % 2 == 1; "%ASC(2)"
+		else; "%ASC(1)"
+	}
+}
+
+On_sakura.recommendsites
+{
+	FormatLinks(recommendsites_sakura)
+}
+
+//These are the websites linked in the top option of the sakura's right click menu. The format is simple; write the label of the link on the left followed by a semicolon, and then on the right, the url to link to. These should be separate strings.
+recommendsites_sakura : array
+{
+	"Zi's Ukagaka Space"; "https://ukagaka.zichqec.com/"
+	"Ladybug Lane (Author's site)"; "https://ladybug-lane.neocities.com/"
+	"Magic Lunar Petz (Author's Petz site)"; "https://appledog77.github.io/"
+}
+
+On_sakura.portalsites 
+{
+	FormatLinks(portalsites_sakura)
+}
+On_portalrootbutton.caption
+ {
+	"The Stanley Parable Promotional Sites"
+	"The Stanley Parable Important Websites"
+ }
+//These are the websites linked in the second option of the sakura's right click menu. Same as above
+portalsites_sakura : array
+{
+	"The Stanley Parable Official Website"; "https://www.stanleyparable.com/"
+"	The Stanley Parable Fanfic Hub"
+	--
+	"%ASC(1)https://archiveofourown.org/tags/The%20Stanley%20Parable/works%ASC(2)"
+	--
+	"Buy TSPUD on Steam!"
+	--
+	"%ASC(1)https://store.steampowered.com/app/1703340/The_Stanley_Parable_Ultra_Deluxe/%ASC(2)"
+	--
+	"The Stanley Parable Wiki"
+	--
+	"%ASC(1)https://thestanleyparable.fandom.com/wiki/The_Stanley_Parable_Wiki%ASC(2)"
+	--
+	"The Stanley Parable 2 Official Website"
+	--
+	"%ASC(1)https://stanleyparable2.com/#%ASC(2)"
+	--
+}
+
+On_kero.recommendsites
+{
+	FormatLinks(recommendsites_kero)
+}
+On_kero.recommendbuttoncaption
+ {
+	"Important Links"
+ }
+//These are the websites linked in the first option of the kero's right click menu. Same as above
+recommendsites_kero : array
+{
+	"Lots O' Buttons";	"https://git.beefox.xyz/buttons/"
+	"The really big button that doesn't do anything"; "http://stefangagne.com/spatulacity/button.htm"
+}
+
+On_readmebutton.caption
+ {
+	"The Narrator Manual"
+ }
+
+On_callghostrootbutton.caption
+ {
+	"Call Ghost (Just make sure they don't disturb me)"
+}
+
+On_vanishbutton.caption
+ {
+	"Uninstall (NO!)"
+}
+
+On_dressuprootbutton.caption
+{
+	"No Dress-Ups Available"
+}
+//Autopause written by Zichqec https://ukagaka.zichqec.com/
+/*
+This function should work in any YAYA ghost. Just copy the whole function into your ghost somewhere, and it should be applied automatically!
+If you're using AYA, you can just copy over the entire if check into your normal OnTranslate function, and leave out the other lines of code.
+
+
+How to write your dialogues with this processor:
+
+This is some dialogue. Pauses will be inserted after punctuation marks, so long as there is a space after them! If you want to control the timing manually...\w8\w8\w8\w8 you can do that too. \n\nMake sure you add a space before linebreaks if you want the previous sentence to have a pause after it.\![dummy-tag] You can also purposefully not add a space (or put another tag in the way) if you want to omit the pause.
+
+With the default setup, this would be the output:
+
+This is some dialogue.\w8 Pauses will be inserted after punctuation marks,\w4 so long as there is a space after them!\w8 If you want to control the timing manually...\w8\w8\w8\w8 you can do that too.\w8 \n\nMake sure you add a space before linebreaks if you want the previous sentence to have a pause after it.\![dummy-tag] You can also purposefully not add a space (or put another tag in the way) if you want to omit the pause.
+
+
+Pause tags are added after punctuation marks, but ONLY if that punctuation mark is followed immediately by a space. You can use this to control whether or not a pause is added at any point in your dialogue.
+
+You can also add \![no-autopause] anywhere in a script to prevent pauses from being added in any part of the script! This is useful for things like menus.
+Be careful that you don't have a comma and space combination in your sakurascript tags! As long as you write them like \![raise,OnThing,Arg 1] and not \![raise, OnThing, Arg 1], you should be fine.
+
+You can adjust this all how you like. I also included options to handle ellipsis separately.
+You'll have to be a bit mindful of how you write your dialogues, but this can make it much easier/cleaner in general!
+
+Note: you could also change this to only add autopause if you specify a \![autopause] tag in the script, just by changing the if check! You could even get a bit more involved, and make it automatically check for certain events (like aitalk) and apply pauses to those but nowhere else. Whatever you need to make it useful but not a nuisance to you!
+*/
+
+OnTranslateInternal.AutoPause
+{
+	_talk = _argv[0]
+
+	if "\![no-autopause]" !_in_ _talk
+	{
+		/*
+		//Additional options if you want ellipsis to have little pauses between each dot. Personally, I think I want to do that manually, for when I want a particular flavor. If you want this, just uncomment it.
+
+		_talk = REPLACE(_talk,"... ",".\w4.\w4.\w8\w8 ") //Ellipsis
+		_talk = REPLACE(_talk,"...? ",".\w4.\w4.\w4?\w8\w8 ") //Question mark + ellipsis
+		_talk = REPLACE(_talk,"...! ",".\w4.\w4.\w4!\w8\w8 ") //Exclamation point + ellipsis
+		*/
+
+		//_talk = REPLACE(_talk,", ",",\w4 ") //Comma
+		_talk = REPLACE(_talk,". ",".\w8 ") //Period
+		_talk = REPLACE(_talk,"? ","?\w8\w8 ") //Question mark
+		_talk = REPLACE(_talk,"! ","!\w8\w8 ") //Exclamation point
+		_talk = REPLACE(_talk,"; ",";\w4 ") //Semicolon
+		//_talk = REPLACE(_talk,"- ","-\w8 ") //Dash - This one seems to happen a lot when I don't want it, so I am commenting it out
+	}
+
+	_talk
+}
+
+
+//—————————————————————————————— User pronoun related ——————————————————————————————
+
+they
+{
+	if SHIORI3FW.UserSex == "male"; "he"
+	elseif SHIORI3FW.UserSex == "female"; "she"
+	else; "they"
+}
+
+them
+{
+	if SHIORI3FW.UserSex == "male"; "him"
+	elseif SHIORI3FW.UserSex == "female"; "her"
+	else; "them"
+}
+
+their
+{
+	if SHIORI3FW.UserSex == "male"; "his"
+	elseif SHIORI3FW.UserSex == "female"; "her"
+	else; "their"
+}
+
+theirs
+{
+	if SHIORI3FW.UserSex == "male"; "his"
+	elseif SHIORI3FW.UserSex == "female"; "hers"
+	else; "theirs"
+}
+
+themself
+{
+	if SHIORI3FW.UserSex == "male"; "himself"
+	elseif SHIORI3FW.UserSex == "female"; "herself"
+	else; "themself"
+}
+
+//%(they) %(p('are','is'))
+//You can change the name of this function if you want! I kept it short so it's fast to type
+p
+{
+	if SHIORI3FW.UserSex == "undef"; _argv[0] //they are
+	else; _argv[1] //he is/she is
+}
+
+/*
+
+An example of the above setup:
+"%(they) %(p('were','was')) looking for that earlier, I'll ask if %(they)'%(p('ve','s')) found it."
+
+If using they, the %(p) functions will return the first word specified, resulting in:
+"they were looking for that earlier, I'll ask if they've found it."
+
+If not using they, for example if using she, it will return the second specified word instead, resulting in:
+"she was looking for that earlier, I'll ask if she's found it."
+
+With this function, you can quickly customize words that need to change based on whether it should be singular or plural. Just remember; the %(p) function is set up so that the first word you specify matches with the 'they' labels used on the pronoun functions. You can always switch that around if you like, too.
+
+*/
+
+//This just makes %(username) match with the username determined by the SSP prefs, rather than having to use the %username environment variable which is *not* the same and which you can't do things like TOUPPER to.
+//If you want to have the user be able to set a nickname or something, you may want to change username to a variable instead and get rid of this!
+
+
+username
+{
+	SHIORI3FW.UserName
+} 

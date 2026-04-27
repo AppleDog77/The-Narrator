@@ -1,0 +1,79 @@
+KeroMenuGreetings : nonoverlap
+{
+	"[Hi.]"
+	"..."
+}
+
+//Because there is an all modifier here, you don't need to write -- between menu options
+OnKeroMenu : all
+{
+	"\1\s[11]\b[2]\![set,autoscroll,disable]"
+	if SHIORI3FW.Eventid == "OnMouseDoubleClick"; KeroMenuGreetings //The check here is so they won't comment if you click the back button. Remove if you prefer
+	"\n\n\_q"
+	
+	//Put anything you want here, anything at all. For example, here's how you can add your own menu... You can make as many like this as you want! Uncomment if you want to test it out, or erase if you don't want it
+	"\![*]\q[System Info,OnSystemInformation]\n\n"
+	"\![*]\q[Ask about Experiences,staxp]\n\n"
+	"\![*]\q[Ask me anything,staquiz]\n"
+	"\![*]\q[Cancel,keroCANCEL]"
+}
+
+/*
+OnSomeMenu : all
+{
+	"\1Some other menu."
+	"\n\n\_q"
+	
+	//Presumably more fun stuff here. Ask the character questions? Bug report information? Minigames? Utilities? Puzzles? Anything you can think of! Just make up a name for your menu function that starts with On, and put it in the \q tag like in the menu above
+	
+	"\![*]\q[Back to main menu,OnKeroMenu]\n"
+	"\![*]\q[Cancel,keroCANCEL]"
+}
+*/
+
+OnSystemInformation
+{
+	os_name = FUNCTIONEX("saori_cpuid.dll","os.name")
+	os_version = FUNCTIONEX("saori_cpuid.dll","os.version")
+	cpu_name = FUNCTIONEX("saori_cpuid.dll","cpu.name")
+	cpu_clockex = FUNCTIONEX("saori_cpuid.dll","cpu.clockex")
+	"/
+	\1\s[11]\b[2]/
+	\_q\f[bold,1]OS:\f[bold,0] %(os_name) %(os_version)\n/
+	\f[bold,1]Memory Load:\f[bold,0] %(memoryload)%\n/
+	\f[bold,1]Physical Memory:\f[bold,0] %(memoryavailphys) KB\n/
+	\f[bold,1]CPU:\f[bold,0] %(cpu_name) %(cpu_clockex)MHz\n/
+	\f[bold,1]Ukagaka:\f[bold,0] %property[baseware.version]/
+	\e"
+}
+
+Select.keroCANCEL
+{
+	"\1\s[11]...\e"
+	"\1\s[11][OK.]\e"
+}
+
+Select.staxp
+{
+		"\0\s[0]S-\w8\0\s[6] Stanley? Stanley, I have so much to say to you, so much we need to catch up on! Where should we begin?\1\s[11][...\w8 I guess at the beginning? I was sort of able to entertain myself... but only for so long... I don't even remember how long-]\w8\0\s[3]\n\n[half]No no no, Stanley, don't talk about it if you don't want to.\1\s[11]\n\n[half][But I do want to! But also i don't... i dont know]\w8\0\s[0]\n\n[half]Well, I'll assume you don't want to talk about it.\w8 I'm here now.\w8 For you.\w8 You can talk about it any time you wish. I'll be right here, I promise.\w9\w8\w8\w8\w8\w8\w8\w9\1\s[11]\n\n[half][...\w8OK so what happned was that the bucket and I exlored the desert for eons and-]\0\s[3]\n\n[half]Woah, slow down Stanley! Take a deep breath, or three, and try to talk it out. Take your time.\1\s[11]\n\n[half][...\w8 ...\w8 OK so we, made a campfire. Then I started chatting with the bucket,\w8 then I imagined your voice in my head,\w8 to keep me sane,\w8 then I kept seeing things in the distance but it was all fake...\w8 Nevermind all that. ...\w8]\0\s[4]\n\n[half]That's just, horrible! I'm so glad I got you back. It took a lot of hard work, and trust, and-\w8\1\s[11]\n\n[half][I said never you mind! I'm back, I've got it of my chest, so can't we not talk about this anymore?]\0\s[0]\n\n[half]Don't worry, Stanley, I won't talk about it anymore if you don't want to.\e"
+}
+
+Select.staquiz
+{
+	 "\1\s[11][My question is, which is better?]\n\n[half]\![*]\q[Cookies,cooky]\n\![*]\q[Ice Cream,crem]\n\![*]\q[Both,cnc]\n\n[half]\![*]\q[Cancel,keroCANCEL]\e"
+}
+
+Select.cooky
+{
+	"\1\s[11][Cookies, huh? I do love a crunchy chocolate chip cookie.]\e"
+}
+
+Select.crem
+{
+	"\1\s[11][Yeah, ice cream is the best, for sure. Have you tried %(flavours)? Its great.]\e"
+}
+
+Select.cnc
+{
+	"\1\s[11][Aw man...\w8 Look, i know it's hard to decide between two of the best sweet treats ever, but that's cheating! \w8...Oh well, I'll allow it. Cookies and cream does combine the best of both worlds. I was just hoping I could get a definitive answer on this one, but oh well.]\e"
+}

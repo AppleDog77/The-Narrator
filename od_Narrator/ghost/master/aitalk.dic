@@ -1,61 +1,47 @@
-﻿
 OnAiTalk
- {
-	if RAND(100) < communicateratio
- 	{
- 		StartCommunicate
-	}
- 	else
+{
+	if CHAIN.IDName != ""
 	{
- 		if mikireflag == 0
-		{
-			if CHAIN.IDName == "" {
- 				lastTalk = RandomTalk
-			}
-			else {
-				lastTalk = ChainTalk
-			}
-			lastTalk
-		}
- 		else
-		{ 
-		MikireTalk
- 		}
+		LastTalk = ChainTalk
 	}
- }
+	else
+	{
+		LastTalk = RandomTalk
+	}
+	LastTalk
+}
 
-
-//Pronoun Reference: %(nomPro)/%(oblPro)/%(posPro)
+//Pronoun Reference: %(username) %(they) %(them) %(their) %(theirs) %(themself) And an example of the " + '%(p)' + " function: %(they) %(p('are','is')) working on a ghost
 //Stanley's typos are intentional
 RandomTalk : nonoverlap_pool
 {
 if stanleymode == 1
-	{			
+	{
 		"\1\s[11][OK %(username), if there's any way to get my reassurance bucket back let me know!]\0\s[9]No, don't. Don't let him know.\e"
-		
+
 		"\1\s[11][I'm gonna look around this computer and see if I can find anything interesting. Want to come along with me, Narry?]\0\s[1]Uh,\w8\s[0]hmm, I suppose I could, but-\1\s[11]\n\n[half][Great! See you there!]\w8\1\s[-1]\0\s[0]\n\n[half]Come back here, Stanley!\s[-1]\w8\w8\w8\w8\w8\w8\w8\w8\w8\w8\0\s[0]\1\s[11]\n\n[half][Wasn't that great?]\0\s[6]\n\n[half]Hmm, I suppose it was rather enjoyable. I found some %(opinions) things in %(usernamesfolder)...\w8\s[3] But please don't run off again!\e"
-		
+
 		"\1\s[11][I'm gonna look around this computer and see if I can find a reassurance bucket of some sort. Want to come along with me, Narry?]\0\s[1]Uh,\w8\s[0] hmm, no! You don't need that bucket-\1\s[11]\n\n[half][Great! See you there!]\w8\1\s[-1]\0\s[0]\n\n[half]Come back here, Stanley!\s[-1]\w8\w8\w8\w8\w8\w8\w8\w8\w8\w8\0\s[0]\1\s[11]\n\n[half][Aww, I couldn't find a suitable bucket...]\0\s[9]\n\n[half]I'd love to never look at any \f[bold,true]buckets\f[bold,false] ever again...\e"
 
 		"\1\s[11][Uh, I've been finding the weirdest stuff on the Internet...]\0\s[1]Oh no. Stanley, what did you find?\1\s[11]\n\n[half]%(internetoddities)\0\s[9]\n\n[half]Suddenly, the internet disconnected for no reason at all. How strange...\1\s[11]\n\n[half][Hey! Aw man...]\e"
-		
+
 		"\1\s[11][Your desktop is really cool! Mine's currently just the default theme...]\e"
 
 		"\1\s[11]['stranger than fiction full movie free watch online']\0\s[3]STANLEY, NO! Those links are full of viruses and adware. You could get-\w8 This computer could get infected! All of %(username)'s lovingly cared for files could get deleted!\1\s[11]\n\n[half][That's strange. All I see is a bunch of-\w5 What the...]\0\s[0]\n\n[half]Sorry Stanley, I've turned off your Internet connection as you clearly have not proven to me that you can navigate the Internet responsibly.\1\s[11]\n\n[half][You're no fun... I was about to watch a funny movie!]\0\s[4]\n\n[half]Sorry, I just don't want to risk anything happening to y-\w8 the computer...\e"
 
 		"\1\s[11][Stranger than Fiction is my favorite movie! I'm not really sure why though...]\0\s[8]Hmm... I don't remember if I have a favourite...\e"
-		
-		"\1\s[11][Wow! Stunning animation!]\0\s[0]Hmm...\w8\s[6] It looks rather interesting, I admit...\e"
-		
-		"\1\s[11][Check out this %(opinions) fanfiction on AO3...]\0\s[0]Oh? Let's see it...\w8 It is\w8 %(opinions).\e"
-		
-		"\1\s[11][Check out this %(opinions) fanfiction on AO3...]\0\s[0]Oh? Let's see it...\w8 It's\w8 %(compliments)!\e"
-		
-	    "\0\s[0]You know Stanley, I really dislike it when in stories, the ending is not cathartic. An ending can be sad, but it has to be satisfying in some way.\1\s[11][...]\0\s[3]Stanley, don't feel guilty! That particular ending was...\w7\s[4] not very good. I don't even know where it came from! I don't remember making it...\w8\s[0] Anyway, tragedies can be satisfying, but usually they are not. That's all.\e"
-		
-		"\1\s[11][Check out this cool program I downloaded! It many buttons to push! When I push one, more buttons appear!]\0\s[3]Oh dear... buttons are filling up the screen completely! Close the program now, Stanley!\1\s[11]\n\n[half][But, but, I want to push the buttons!...\w8 Fine, I'll close it... But it may take a while to close all these buttons...]\e"
 
-		"\0\s[6]Stanley, I'm writing a brand new story about a seal. Please don't look at it while it's in progress...\1\s[11][Ooh!\w8\0\s[0]\1\s[11] It looks good. I wanna see what happens next... Hey, the seal character reminds me of-]\0\s[9]\n\n[half]*sigh* I should have known you would disobey me.\e"
+		"\1\s[11][Wow! Stunning animation!]\0\s[0]Hmm...\w8\s[6] It looks rather interesting, I admit...\e"
+
+		"\1\s[11][Check out this %(opinions) fanfiction on AO3...]\0\s[0]Oh? Let's see it...\w8 It is\w8 %(opinions).\e"
+
+		"\1\s[11][Check out this %(opinions) fanfiction on AO3...]\0\s[0]Oh? Let's see it...\w8 It's\w8 %(compliments)!\e"
+
+	    "\0\s[0]You know Stanley, I really dislike it when in stories, the ending is not cathartic. An ending can be sad, but it has to be satisfying in some way.\1\s[11][...]\0\s[3]\n\n[half]Stanley, don't feel guilty! That particular ending was...\w7\s[4] not very good. I don't even know where it came from! I don't remember making it...\w8\s[0] Anyway, tragedies can be satisfying, but usually they are not. That's all.\e"
+
+		"\1\s[11][Check out this cool program I downloaded! It has many buttons to push! When I push one, more buttons appear!]\0\s[3]Oh dear... buttons are filling up the screen completely! Close the program now, Stanley!\1\s[11]\n\n[half][But, but, I want to push the buttons!...\w8 Fine, I'll close it... But it may take a while to close all these buttons...]\e"
+
+		"\0\s[6]Stanley, I'm writing a brand new story about a seal. Please don't look at it while it's in progress...\1\s[11][Ooh! \0\s[0]\1\s[11] It looks good. I wanna see what happens next... Hey, the seal character reminds me of-]\0\s[9]\n\n[half]*sigh* I should have known you would disobey me.\e"
 
 		if month == 4
 		{
@@ -72,48 +58,50 @@ if stanleymode == 1
 
 		"\0\s[3]Stanley, um...\w8\1\s[11][What?]\w8\0\s[0]\n\n[half]S-\w8 Stanley, did you like the Parable?\1\s[11]\n\n[half][Well enough I suppose. I mean, at first I really liked it, then when I realized there was no real escape I began to hate it, but then after a while I didn't particularly care about it, then a few years later or so I started to like it again...\w8 The point is, without you it'd have been a complete disaster...]\0\s[6]\n\n[half]Um, great to hear, Stanley!\e"
 
-		"\0\s[6]\b2Stanley...\w8\1\s[11][What?]\w8\0\s[0]\n\n[half]Stanley, I'm going to tell you a brand new story, all about you!\w8\1\s[11][Hmm...?\w5 OK...\w8 I'll listen to it, and see if it's any good.]\w8\0\s[0]\n\n[half]Of course it will be good! Just listen.\w8 There once was a man named Stanley.\w8 Stanley worked at the best flower shop in town, Bonnie's Bouquets.\w8 Every day\w8 of every month\w8 of every year,\w8 Stanley would drive to the shop and take stock of his inventory.\w8 A customer would arrive,\w8 and he would listen to their request and create a customized bouquet.\w8 One would think that would be boring, but Stanley loved smelling the flowers as he gave them to the customers.\w8 And Stanley was happy.\w8 Next door, there was a cafe,\w8 known as Galactic Cafe.\w8 The barista at the cafe loved serving coffee to the customers, and chatting to them about his lovely stories and ideas.\w8 He looked outside the window between orders and sighed wistfully as the fall leaves drifted by.\w8 One day their lives would change forever...\e:chain=bonnie"
+		"\0\s[6]\b2Stanley...\w8\1\s[11][What?]\w8\0\s[0]\n\n[half]Stanley, I'm going to tell you a brand new story, all about you!\w8\1\s[11]\n\n\[half][Hmm...?\w5 OK...\w8 I'll listen to it, and see if it's any good.]\w8\0\s[0]\n\n[half]Of course it will be good! Just listen.\w8 There once was a man named Stanley.\w8 Stanley worked at the best flower shop in town, Bonnie's Bouquets.\w8 Every day\w8 of every month\w8 of every year,\w8 Stanley would drive to the shop and take stock of his inventory.\w8 A customer would arrive,\w8 and he would listen to their request and create a customized bouquet.\w8 One would think that would be boring, but Stanley loved smelling the flowers as he gave them to the customers.\w8 And Stanley was happy.\w8 Next door, there was a cafe,\w8 known as Galactic Cafe.\w8 The barista at the cafe loved serving coffee to the customers, and chatting to them about his lovely stories and ideas.\w8 He looked outside the window between orders\w8 and sighed wistfully as the fall leaves drifted by.\w8 One day their lives would change forever...\e:chain=bonnie"
 
-		"\0\s[7]Stanley, don't you hate it when there's a dratted missing quotation mark you accidentally make when you're sleepy, and your beta reader points out lots of them in your work? \1\s[11][yeah but a missing parenthesis in code is even worse; it breaks the entire program - f***in breaks!]\0\s[9]\n\n[half]Sorry Stanley, but I had to censor that for the reader. \s[0]Anyway, yes, I agree it's much worse, but a missing quotation mark can easily ruin the flow of the story..."
+		"\0\s[7]Stanley, don't you hate it when there's a dratted missing quotation mark you accidentally make when you're sleepy, and your beta reader points out lots of them in your work? \1\s[11][yeah but a missing parenthesis in code is even worse; it breaks the entire program - f***in breaks!]\0\s[9]\n\n[half]Sorry Stanley, but I had to censor that for %(username). \s[0]Anyway, yes, I agree it's much worse, but a missing quotation mark can easily ruin the flow of the story..."
+		
+		"\1\s[11][Check this out!]\0\s[0]What is it? \w8\s[2]...No! Don't open that!\1\s[11][Why not?]\n\n\[half]\0\s[9]*sigh* I suppose I should've known this would happen at some point... \w8\s[0]Stanley, what you just opened is some kind of jumpscare. So, do not play the video. Thank goodness it didn't autoplay...\1\s[11]\n\n[half][...]\0\s[9]\n\n[half]Stanley, why are you smiling like that? ...\s[2]STANLEY, NO! \s[0]Suddenly, the video started to buffer for eternity... \1\s[11]\n\n[half][I just wanna see wat happens next]\0\s[9]\n\n[half]No, you don't."
 	}
 else //1 - Embarrassed, 2 - Surprised, 3 - Worried, 4 - Sad, 5 - Determined, 6 - Happy, 7 - Angry, 8 - Thoughtful, 9 - Unamused
 	{
-	"\0\s[0]%(username) continued to goof off on the computer instead of getting around to work %(nomPro) was putting off.\e"
-	
-	"\0\s[0]%(username) decided to actually go ahead and start working on %(posPro) project that %(nomPro) had been putting off for so long.\e"
-	
+	"\0\s[0]%(username) continued to goof off on the computer instead of getting around to work %(they) %(p('were', 'was')) putting off.\e"
+
+	"\0\s[0]%(username) decided to actually go ahead and start working on %(their) project that %(they) had been putting off for so long.\e"
+
 	"\0\s[0]You look like you're bored, %(username).\w8\0\s[0] %(suggestions)\e"
-	
+
 	"\0\s[0]Hm, have you cleaned up your %(usersfolder) lately? I took a peek at it, and saw a few files that don't really belong there.\e"
 
 	"\0\s[0]You really should go ahead and organize your files at some point. Just set aside a weekend or two and start organizing them by any method you desire.\e"
 
-	"\0\s[0]Maybe you should take a break, %(username). You've been working for an awfully long time... Perhaps you should %(hobbies)?\e"
+	"\0\s[0]Maybe you should take a break, %(username). You've been working for an awfully long time...\w8 Perhaps you should %(hobbies)?\e"
 
-	"\0\s[0]%(username) decided to take a break, as %(nomPro) had been working for an awfully long time... Perhaps you should %(hobbies)?\e"
+	"\0\s[0]%(username) decided to take a break, as %(they) had been working for an awfully long time...\w8 Perhaps you should %(hobbies)?\e"
 
 	"\0\s[5]Alright %(username), I'm currently writing a completely new story. It's not done yet, so please don't peek.\e"
 
-	"\0\s[0]Let's start at the beginning... this is the story of a person named %(username)...\e"
+	"\0\s[0]Let's start at the beginning...\w8 this is the story of a person named %(username)...\e"
 
 	"\0\s[6]The Internet is a wondrous place, %(username)! I've been Googling various things I've always wished to know, such as, 'what does the aurora borealis look like?', and, 'what is the meaning of life?' and it feels like some sort of adventure!\e"
-	
+
 	"\0\s[0]%(username), did you know that humans don't actually know what colours dinosaurs were?\e"
 
 	"\0\s[9]At least I've gotten away from that dratted \f[bold,true]bucket\f[bold,false]...\w8 I regret ever putting it in The Stanley Parable 2...\w8 It caused so many problems! *sigh*\e"
 
 	"\0\s[4]%(username), I've always liked seals. I always wanted to make a story called 'Stanley the Seal'...\w8 guess it won't happen now...\e"
-	
-	"\0\s[8]I could've sworn The Stanley Parable was released on consoles all the way back in 2013... Strange...\e"
-		
-	"\0\s[0]There's so much information on the World Wide Web! \n It can get a little overwhelming sometimes.\e"
 
+	"\0\s[8]I could've sworn The Stanley Parable was released on consoles all the way back in 2013...\w8 Strange...\e"
+
+	"\0\s[0]There's so much information on the World Wide Web! \nIt can get a little overwhelming sometimes.\e"
+	
 	"\0\s[7]%(username), these reviews are insidious and rotten.\nThis one says, 'The narrator was annoyingly smug jerk, to the point that after I beat the game in 10 minutes, I was more than happy to be rid of him, forever. Waste of money.' See? Rubbish, clearly.\e:chain=reviews"
 
 	"\0\s[8]Have you ever pondered on any of the mysteries of life?\e:chain=life"
 
 	"\0\s[8]As far back as I can recall, I've always been a narrator, a storyteller. My greatest work yet has been The Stanley Parable. But even before it, I've been narrating all sorts of stories!\e:chain=stories"
-	
+
 		{
 		"\0\s[8]Ah, The Stanley Parable...\e:chain=parable"
 		}
@@ -121,10 +109,31 @@ else //1 - Embarrassed, 2 - Surprised, 3 - Worried, 4 - Sad, 5 - Determined, 6 -
 		{
 		"\0\s[8]You know something? I seem to have rather mixed feelings on the Adventure Line\f[sup,true]TM\f[sup,false]...\w8 On the one hand, me and Stanley,\w8 got into all sorts of fun adventures with it\f[sup,true]TM\f[sup,false]! But on the other...\w8\0\s[9] well, it\f[sup,true]TM\f[sup,false] kept ruining my story!\e:chain=advline"
 		}
-		
+	if season == "Spring"
+	{
+	"\0\s[0]Don't you want to see the beautiful sunset outside?\e"
+	}
+	if season == "Summer"
+	{
+	"\0\s[0]Apparently it's rather hot in your world... At least the temperature is even, here in this computer.\e"
+	"\0\s[0]It'd be rather nice to go to the beach now...\e"
+	}
+	if season == "Autumn"
+	{
+	"\0\s[0]Ah, autumn, my favourite season. The gradual change of the leaves from green to orange...\w8 the chilling breeze in the air...\w8 the nights getting longer...\w8 \s[6]Ah, what a wonderful season!\e"
+	"\0\s[0]Halloween is my second favourite holiday after Christmas. I like to be spOoOoOoky now and then.\e"
+	}
+	if season == "Winter"
+	{
+	"\0\s[6]It shall soon be Christmas! My favourite holiday, filled with good cheer and nice decorations.\e"
+
+	"\0\s[6]*hums Jingle Bell tune*\e"
+	
+	"\0\s[2]Where has the time gone? \0\s[0]Has it just flown us by like a swooping eagle?\e"
+	}
 	//OKUAJUB: You can also put if checks inside a dialogue, so the dialogue changes depending on some variable.
 		{ //Setting up a little dialogue here where Snake can respond in different ways depending on how he feels about the user. This first set of brackets makes sure each "if" is contained in this one dialogue.
-		"\0\s[0]One day, for no reason at all, the Narrator asked himself: Do I like being on %(username)'s desktop?\n\n[half]" //This sets up the first line, which never changes. 
+		"\0\s[0]One day, for no reason at all, the Narrator asked himself: Do I like being on %(username)'s desktop?\n\n[half]" //This sets up the first line, which never changes.
 		-- //This makes it so the ghost can run through the if checks without disrupting the dialogue. Depending on if the user meets Snake's feelings criteria, it will say a specific line.
 		if narrFeelings >= -1 && narrFeelings <= 20
 		{
@@ -144,34 +153,34 @@ else //1 - Embarrassed, 2 - Surprised, 3 - Worried, 4 - Sad, 5 - Determined, 6 -
 		--
 		"\e" //Closing the dialogue.
 		}
-	
+
 		{
 		"\0\s[0]"
 		--
 		if narrFeelings >= -1 && narrFeelings <= 20
 		{
 			"\0\s[8]%(username), while I'm here...\w8 Maybe you and I-\w8 we-\w8 could,\w8 talk?\e"
-			
+
 			"\0\s[0]You have an intriguing desktop, to say the least. Very good.\e"
 		}
 		elseif narrFeelings >= 21
 		{
 			"\0\s[6]It's such a shame sharks are a source of fear for most; they're truly majestic creatures!\e"
-			
+
 			"\0\s[6]%(username), did you know that night sharks are quick, nocturnally active, schooling predators that feed mainly on small bony fishes and squid?\e"
-			
+
 			"\0\s[6]%(username), check out this funny review by Abraham Lincoln: The narrator is so funny he makes me giggle like teehee hoohoo haahaa heehee wahoo\e"
-			
+
 			"\0\s[0]Played anything interesting lately? I like story-based, linear games, of course.\e"
-			
+
 			"\0\s[0]What an interesting desktop you have here...\w8 It has a brilliant colour scheme, and a wonderful wallpaper, and a beautiful sound scheme, and great icons and cursors. I- \w8\0\s[6]I really like it, %(username)! You could become an interior designer someday!\e"
 		}
 		elseif narrFeelings <= -1
 		{
 			"\0\s[4]A pity... I was hoping this place would be much better than my old Parable...\e"
-			
+
 			"\0\s[4]When are you going to uninstall me? So I can return to the Parable?\e"
-			
+
 			"\0\s[7]I'm very tempted to do...\w8 \f[bold,true]something\f[bold,false]\w8 to your computer...\w8 But I'd just be blocked by your antivirus, so there's no point...\e"
 		}
 		--
@@ -197,151 +206,20 @@ else //1 - Embarrassed, 2 - Surprised, 3 - Worried, 4 - Sad, 5 - Determined, 6 -
 		--
 		"\e"
 		}
-	
-		if month >= 12
-		{
-		"\0\s[6]It shall soon be Christmas! My favourite holiday, filled with good cheer and nice decorations.\e"
-		
-		"\0\s[6]*hums Jingle Bell tune*\e"
-		}
-	
-		if month == 1
-		{
-		"\0\s[0]A new year, a new beginning.\e"
-		
-		"\0\s[0]As a reminder, it's okay if you didn't get to fulfil your last New Year's resolution! You can always make it this year's resolution, make a better resolution this year, or just abandon it entirely! What good is a resolution that just clutters up your year, and doesn't allow you to do the things you WANT to do?\e"
-		}
-		if month == 2
-		{
-		"\0\s[0]It's February, in case you've lost track of time during your nightly work sessions.\e"
-		}
-		if month == 3
-		{
-		"\0\s[0]It's March, the start of spring and the end of winter, finally.\e"
-		}
-		if month == 4
-		{
-		"\0\s[0]April is a very important month to me... Specifically, April 27, 2022, when The Stanley Parable Ultra Deluxe was released. "
-		--
-		if tspdislike == "true"
-		{
-		"\w8\0\s[4]Too bad you don't like it... "
-		}
-		--
-		"\w8\0\s[0]What a stupendous occasion that was! Again!\e"
-		}
-		if month == 5
-		{	
-		"\0\s[0]Apparently it's rather hot in your world... At least the temperature is even, here in this computer.\e"
-		}
-		if month == 6
-		{
-		"\0\s[0]It'd be rather nice to go to the beach now...\e"
-		}
-		if month == 7
-		{
-		"\0\s[0]July is a very important month to me... Specifically, July 31, 2011, when The Stanley Parable Original was released. "
-		--
-		if tspdislike == "true"
-		{
-		"\w8\0\s[4]Too bad you don't like it... "
-		}
-		--
-		"\w8\0\s[0]It was the beginning of a new era in videogaming...\e"
-		}
-		if month == 8
-		{
-		"\0\s[0]Soon, it shall be autumn, my favourite season. The gradual change of the leaves from green to orange...\w8 the chilling breeze in the air...\w8 the nights getting longer...\w8 \s[6]Ah, what a wonderful season!\e"
-		}
-		if month == 9
-		{	
-		"\0\s[0]Ahh, I remember September 2022...\w8 When I first made it to the real world, ish...\e"
-		}
-		if month == 10
-		{
-		"\0\s[0]October is a very important month to me... Specifically, October 17, 2013, when The Stanley Parable was released. "
-		--
-		if tspdislike == "true"
-		{
-		"\w8\0\s[4]Too bad you don't like it... "
-		}
-		--
-		"\w8\0\s[0]What a momentous occasion that was!\e"
-		
-		"\0\s[0]Halloween is my second favourite holiday after Christmas. I like to be spOoOoOoky now and then.\e"
-		}
-
-		if month == 11
-		{
-		"\0\s[0]The year is almost over already?! Where has the time gone? Has it just flown us by like a swooping eagle?\e"
-		
-		"\0\s[0]I hope you've accomplished everything you've wanted to accomplish this year, and if not, I hope you can achieve those things next year.\e"
-		}
-
-		if weekday == 1
-		{
-		"\0\s[0]%(username) was going back to work in %(posPro) office (or other place of work).\e"
-		}
-		if weekday == 2
-		{
-		"\0\s[0]It's Tuesday, in case you've lost track of time during your nightly work sessions.\e"
-		}	
-		if weekday == 3
-		{
-		"\0\s[0]It's Wednesday, in case you've lost track of time during your nightly work sessions.\e"
-		}
-		if weekday == 4
-		{
-		"\0\s[0]It's Thursday, in case you've lost track of time during your nightly work sessions.\e"
-		}
-		if weekday == 5
-		{
-		"\0\s[0]It's Friday. At long last, it's almost time for the weekends!\e"
-		}
-		if weekday == 6
-		{
-		"\0\s[0]Ah! The weekends! Time to kick back, relax, and watch a %(genre) movie. Or...\w8 do you actually want to do something useful?\e"
-		}	
-		if weekday == 0
-		{
-		"\0\s[0]Ah! The weekends! Time to kick back, relax, and watch a %(genre) movie. Or...\w8 do you actually want to do something useful?\e"
-		}
-
-		if timeslot == "morning"
-		{
-		"\0\s[0]The beginning of a new day...\w8 How will you spend it, %(username)?\e"
-		}
-		if timeslot == "evening"
-		{
-		"\0\s[0]Don't you want to see the beautiful sunset outside?\e"
-		}
-		if timeslot == "latenight"
-		{
-		"\0\s[0]%(username) decided to watch a %(genre) movie tonight.\e"
-		}
-		if timeslot == "midnight"
-		{
-		"\0\s[0]While I admit it's rather nice of you to keep the computer open for this long, maybe you should go to sleep at some point or another. \s[3]D-\w8don't worry about me; I've got projects to work on and various things to do...\e"
-		}
 	}
 }
 
-
-
 reviews
 {{CHAIN
-	//this will happen the first time the chain is called
 	"\0\s[7]And this one goes, 'GAME BAD!!!!! I hate THE Narrator man!!!! WHY IS he british!!!!!' \n I don't know what 'British' even means! Horrible.\e"
-	
-	//they will then go to this dialogue next, this will be the last piece of dialogue in the chain, then they will go back to their normal dialogue
-	"\0\s[7]The worst one is this: 'This is one of the stupidest games I've ever played.' Blah, blah blah...\w8 '...I could've beat the game in about 10 minutes, maybe less. The rest of the time was spent on detours that ended up making me start the game over again multiple times.\nIgnore the positive reviews and don't waste your money.' \f[bold,true]IGNORE THE POSITIVE REVIEWS?!\f[bold,false] \n You missed the whole point of the game! \n I-\w8\s[0] I hope Steam removes these reviews.\e:chain=end"
 
+	"\0\s[7]The worst one is this: 'This is one of the stupidest games I've ever played.' Blah, blah blah...\w8 '...I could've beat the game in about 10 minutes, maybe less. The rest of the time was spent on detours that ended up making me start the game over again multiple times.\nIgnore the positive reviews and don't waste your money.' \f[bold,true]IGNORE THE POSITIVE REVIEWS?!\f[bold,false] \n You missed the whole point of the game! \n I-\w8\s[0] I hope Steam removes these reviews.\e:chain=end"
 }}CHAIN
 
 life
 {{CHAIN
 	"\0\s[8]I wonder what the answer to it all is. Apparently it's the number 42, according to a very lovely book called the Hitchhiker's Guide to the Galaxy...\e"
-	
+
 	"\0\s[8]Oh well. I suppose until we know the answer, all we can do for now is the best we can, getting along with each other and taking care of ourselves...\e:chain=end"
 }}CHAIN
 
@@ -357,14 +235,14 @@ stories
 	"\0\s[8]Storytelling, %(username), is like a sort of dance between the narrator of the tale and the listener, where both have to sync up in perfect harmony, or\w4\s[9] the story is ruined and we-\w8 they have to start all over.\e"
 
 	"\0\s[0]When one listens to a story, one gets to experience it, and thus make up their own interpretation of it. But what if their reinterpretation is...\w8 um...\w8 really silly! Really off-the-mark, you know? I've never liked that possibility.\e"
-	
+
 	"\0\s[0]...But, I suppose,\w8 I've gotten used to it, over the years. I've gone on to accept it as an inevitable result of telling stories. And so, if I ever meet Stanley again I'll...\w8 I'll make amends with him. I'll \s[4]*sigh* apologize, I guess.\e:chain=end"
 }}CHAIN
 
 bonnie
 {{CHAIN
 	"\0\s[0]\b2One day, the barista next door came over to Bonnie's Bouquets and ordered bright orange roses for a work party.\w8 Stanley visited Galactic Cafe every morning as the crows flew, but he never really took a good look at the barista himself...\w8\n\n He was a little taller than Stanley, had a square-shaped body, and wore a brown coat, and polished gold glasses, with a watch hanging from them.\w8 Stanley picked out some roses from a nearby vase and gave them to the barista.\w8 He introduced himself as Harry, and got to talking with Stanley about his newest story in his head that he was obsessed with.\w8\s[6]\n\n Stanley listened so intently to Harry's marvelous story that he almost forgot about his work!\w8 Other staff members tried to call him to sort some flowers or clean something up, but Stanley was only listening to Harry's story!\w8 Harry was only too happy to receive all the attention, of course...\e"
-	"\0\s[0]\b2That night, as Stanley slept, he had a rather unusual dream in which Harry was running away from Stanley and he had to chase him.\w8 He was carrying a bucket, for some reason.\w8 When he woke up, he knew he had to see Harry again.\w8\n\n At work, he didn't see him again,\w8 and kept mistaking other customers for Harry and being disappointed,\w8 until one fateful day, when he was picking out orange flowers for someone, and he saw a familar face at the back of the line.\w8 He tried not to grin at Harry, serving the other customers their flowers until Harry was at the front of the line.\w8 Then he eagerly awaited Harry's order.\w8\n\n But Harry instead invited him over to his house to help him with his story!\w8 Stanley was amazed. He was glad to help,\w8\s[6] and at Harry's home they talked for four hours about Harry's amazing adventure story...\e"
+	"\0\s[0]\b2That night, as Stanley slept, he had a rather unusual dream in which Harry was running away from Stanley and he had to chase him.\w8 He was carrying a bucket, for some reason.\w8 When he woke up, he knew he had to see Harry again.\w8\n\n At work, he didn't see him again,\w8 and kept mistaking other customers for Harry and being disappointed,\w8 until one fateful day, when he was picking out orange flowers for someone, and he saw a familiar face at the back of the line.\w8 He tried not to grin at Harry, hiding his blush, serving the other customers their flowers until Harry was at the front of the line.\w8 Then he eagerly awaited Harry's order.\w8\n\n But Harry instead invited him over to his house to help him with his story!\w8 Stanley was amazed. He was glad to help,\w8\s[6] and at Harry's home they talked for four hours about Harry's amazing adventure story...\e"
 	"\0\s[0]\b2A day later, Stanley secretly and carefully picked out carnations, roses, and purple flowers from Bonnie's Bouquets, and brought them home, planting the carnations in green dye, the roses in blue and green dyes, and the rest in regular pots.\w8 From then on, he visited Galactic Cafe every day for two weeks without pause, mustering up the courage to give Harry the flowers he had obtained from Bonnie's,\w8 and as he sipped his tea, he talked with Harry about things like Harry's stories, his favorite books, and his fern plant.\w8 Harry, in turn, talked to Stanley about Stanley's pet goldfish, his Button Toy he got recently, and his recent attempt to raise butterflies from egg to adult.\w8\n\n After two weeks, one special Sunday, Stanley took a deep breath and calmed down, readying himself to give Harry the flowers...\w8\s[8]\n\n Harry wondered why Stanley was taking a rather long time to come to the cafe,\s[0] when he saw Stanley walk into the room with a bouquet of green carnations, blue and green roses, and various purple flowers, which he handed to Harry, blushing.\w8\s[6] Stanley liked Harry's stories and wanted to read his favorite books with him and meet his fern plant. Harry took him home,\w8 and later Stanley took Harry to his home, and they played with Stanley's Button Toy as well...\e"
 	"\0\s[6]A year later, they got married.\w8 And Stanley and Harry\w3 were happy.\w8 The End! What do you think, Stanley?\1\s[11][I think it's...\w8 pretty good! Maybe not as good as the Parable, of course, but still pretty good. Is this based on anything tho?]\0\s[1]No, no, no! Why should you think that, Stanley? \w4\s[3]It's just a story I came up with. Nothing more!\1\s[11]\n\n[half][OK then, I'll take your word fir it, I guess...]\e:chain=end"
 }}CHAIN
@@ -373,6 +251,7 @@ parable
 {{CHAIN
 	"\0\s[0]%(username), I have a question for you. Do you like The Stanley Parable?\n\n[half]\![*]\q[Yes I do!,yepyepyep]\n\![*]\q[No I don't!,nopenopenope]\n\n[half]\![*]\q[Cancel,CANCEL]"
 }}CHAIN
+
 Select.yepyepyep
 	{
 	tsplike = "true"
@@ -405,7 +284,7 @@ Select.nosorry
 	"\0\s[7]Wha-\w8 You too?! I can't believe this! Why not?!\w8 Is it because you find it annoying?! Or too loud?\w8\0\s[9] Or any number of silly reasons... *sigh*\e:chain=end"
 	}
 
-HourCheck
+OnHourCheck
 {
 if passmin >= 59
 	{
@@ -414,10 +293,9 @@ if passmin >= 59
 	}
 }
 
-
-OnMinuteChange //This is what will trigger time-based dialogue for your Ghost.
+OnMinuteChange //Zarla: This is what will trigger time-based dialogue for your Ghost.
  {
-	HourCheck //checks to see if an hour has passed, ignore it
+	OnHourCheck //checks to see if an hour has passed, ignore it
 	--
  	if minute == 0 //These ifs will check what time it is. Here, it's seeing if the minute equals zero...
 	{
@@ -426,114 +304,18 @@ OnMinuteChange //This is what will trigger time-based dialogue for your Ghost.
 			narrFeelings += 5
 			narrMood += 5
  			"\0\s[0]It's noon. The hottest hour of the day. Don't humans require water?\e"
-			//Replace with appropriate dialogue as you want.
 		}
- 		elseif hour == 0 //If the hour is zero, aka midnight. Again, you can change this to whatever hour you want to check for. This section is flexible! You can also add more elseifs if you want to check for other hours.
+ 		elseif hour == 0
 		{
 			narrFeelings += 5
 			narrMood += 5
  			"\0\s[0]It's midnight! %(username) decided to shut off %(posPro) computer and go to bed, to get a good night's rest. I don't actually need rest, myself, and although I do have some important projects I need to work on, I actually don't really mind if you're not quite ready to go to sleep just yet.\e"
-			//Then replace the dialogue with what's appropriate.
 		}
 		else
 		{
 			narrFeelings += 5
 			narrMood += 5
-			"\0\s[0]It's %(hour12)'o clock.\e"
-			//%(hour12) stores the time. This is a general top of the hour notification. I personally like this because it helps me keep track of time when I've been working on something, so when a ghost is all "Hey it's 3 o clock" I can be like woah really when did that happen. If you think this is annoying though, you can just delete this bit of dialogue to leave this else statement blank, or leave "" in here instead.
+			//"\0\s[0]It's %(hour12)'o clock.\e"
 		}
-	}
-	//You can also check for more specific times! For example...
-	elseif hour == 23 && minute == 55 //this checks to see if the hour is 23 and the minutes are at 55... essentially, 11:55 pm.
-	{
-		"\0\s[0]5 minutes to midnight...\e"
-		//Replace with what you like!
-	}
-	//Don't touch this part.
-	elseif mikireflag == 1
- 	{
- 		MikireTalk
-	}
- }
-
-OnSecondChange
- {
-	if passsec == 59
- 		{
-	 	passsec = 0
- 		passmin = passmin + 1
-		}
- 	else
- 		{
-	 	passsec = passsec + 1
-		}
-	//This gets the time since the last dialogue ended, in seconds. SHIORI3FW.TalkEndTime is a variable that comes with YAYA as SHIORI
-	_since = GETSECCOUNT - SHIORI3FW.TalkEndTime
-	
-	//status is an inbuilt YAYA variable that has information on if the balloon is open, etc.
-	_balloonisopen = "balloon" _in_ status
-	
-	if _since % 15 == 0 && !_balloonisopen
-	{
-		//If you want to adjust how likely it is to change poses, change the number in the RAND. Higher numbers mean a lower chance for the pose to change.
-		if RAND(8) == 0; OnSurfaceRestore
-	}
-	if mikireflag == 0 && reference1 == 1
-	{
-		"\0\s[0]I seem to be in a strange void... Um..."
-		
-		MikireTalk
-	}
-	if mikireflag == 1 && reference1 == 0 //Dialogue for coming back on the screen
-	{
-		EndMikireTalk
-	}
-	mikireflag = reference1 //reference1 is if the ghost is offscreen or not
-	if reference2 == 1
-	{
- 		//"\0\s[0]gay\e"	
-	}
- }
-
-MikireTalk
- {
-	"\0\s[0]Why is there a strange void beyond your computer? All I can see is a sign that says, \f[bold,true]Ctrl-Shift-F12\f[bold,false]. What does it mean?\e"
-	//Note the hotkey combo Narrator mentions. He's telling the truth, that should bring them back on the screen.
- }
-
-EndMikireTalk
- {
-	"\0\s[0]Whew! I'm back.\e"
- }
-
-
-OnSurfaceRestore
- {
-	if stanleymode == 1
-	{
-	"\0\s[0]\1\s[11]\e"
-	"\0\s[8]\1\s[11]\e"
-	}
-	else
-	{
-	"\0\s[0]\1\s[-1]\e"
-	"\0\s[8]\1\s[-1]\e"
-	}
- }
-
- 
-OnKeyPress
-{
-	if reference0 == "t"
-	{
-	OnAiTalk
-	}
-	elseif reference0 == "r"
-	{
-	OnLastTalk
-	}
-	elseif reference0 == "f1"
-	{
-	"\![open,readme]"
 	}
 }

@@ -1,0 +1,150 @@
+OnFirstBoot
+{
+	//If you add variables, make sure to initialize them here!
+	//Note - I haven't added anything about username or pronouns here because it's all handled by the SSP prefs
+	stroke = 0
+	continuousstroke = 0
+	hemisphere = "Northern"
+	narrFeelings = 0 //Setting relationship level to neutral
+	narrMood = 50 //Setting mood level to neutral
+	stanFeelings = 0
+	stanMood = 50
+	givenfood = 0 //Resetting item limits
+	givenwater = 0
+	givencoffee = 0
+	giventea = 0
+	givenbooks = 0
+	givenwall = 0
+	givenscreen = 0
+	stanleymode = 0 //the mode itself which allows Stanley to return
+	stanleyback = 0 //for remembering that it's unlocked
+	LastTalk = ""
+	"\t\1\s[-1]\0\s[0]...Wait, what?\w8\n\n[half] Did it work? User, can you hear me?\w8\n\n[half]...Wait, is this one of those text-based games? Can you at least read me?\x\w8\0\c\s[0]Hm? Who are you? \w8...I'm getting your info from what looks like a preferences menu, here...\w8\w9\![open,configurationdialog,setup] You can modify it here if something's wrong...\w8\w8 Looks like it worked! \s[6]Yes! I've escaped, at last! \s[5]Now to find a way to bring back Stanley..."
+}
+
+OnInitialize
+{
+	//If you want some variables to reset on boot, put them here. This event will happen even if you add other events like OnGhostChanged
+	//OnInitialize is a NOTIFY event! That means it cannot return scripts. This event is only meant for things like variable changes. See this page on Ukadoc for more info: https://ukagakadreamteam.github.io/ukadoc/manual/spec_shiori3.html
+	
+	//If you add new variables in updates, I recommend initializing them like so:
+	//if !ISVAR("NewVariable"); NewVariable = 0
+	//This means that it will only set the new variable if the user doesn't already have it, so that their variables don't get overwritten
+	
+	stanleymode = 0 //the mode itself which allows Stanley to return
+
+	givenfood = 0 //Resetting item limits
+	givenwater = 0
+	givencoffee = 0
+	giventea = 0
+	givenbooks = 0
+	givenwall = 0
+	givenscreen = 0
+
+	if reference0 != "reload" //For things you want to reset EXCEPT when just reloading; a convenience for you the dev, basically
+	{
+		LastTalk = ""
+		narrMood = RAND(50) + (narrFeelings)
+		{
+		if narrMood >= 100
+			{
+			narrMood = 100
+			}
+		else
+			{
+			"\0\s[0]\e"
+			}
+		}
+		stanMood = RAND(50) + (narrFeelings)
+		{
+		if stanMood >= 100
+			{
+			stanMood = 100
+			}
+		else
+			{
+			"\0\s[0]\e"
+			}
+		}
+	}
+}
+
+OnBoot
+{
+	_temp = SHIORI3FW.UserBirthday
+	_user_birthday = "%(_temp[1])/%(_temp[2])" //M/D, if you want it D/M you can switch it around
+	_today = "%(month)/%(day)" //Again, switch this around if using D/M
+	
+	"\1\s[-1]\0\s[0]"
+	--
+	if _today == _user_birthday
+	{
+		"Happy birthday, %(username). I'm so glad you survived another full revolution around the Sun. %(username) decided to watch a %(genre) movie today."
+		"\0\s[0]Happy birthday, %(username), I suppose.\e"
+	}
+	elseif _today == "1/1" //You can add whatever cool dates you want with more elseifs here
+	{
+		if narrMood <= 20
+		{
+		"\0\s[9]Another year of suffering here..."
+		}
+		else
+		{
+		"\0\s[0]A new year, a new beginning.\e"
+
+		"\0\s[0]Hello, %(username)! It's the New Year. As a reminder, it's okay if you didn't get to fulfil your last New Year's resolution! You can always make it this year's resolution, make a better resolution this year, or just abandon it entirely! What good is a resolution that just clutters up your year, and doesn't allow you to do the things you WANT to do?\e"
+
+		"\0\s[0]I hope you've accomplished everything you've wanted to accomplish last year, and if not, I hope you can achieve those things this year."
+		}
+	}
+	elseif _today == "10/31"
+	{
+		"\0\s[0]Halloween is my second favourite holiday after Christmas. I like to be spOoOoOoky now and then...\e"
+		"\0\s[0]BOoOoOo...\e"
+	}
+	elseif _today == "10/17"
+	{
+		"\0\s[0]Today is October 17th. For some reason that date seems to be significant...\w8 Specifically, October 17, 2013, when The Stanley Parable was released.\e"
+	}
+	elseif _today == "07/31"
+	{
+		"\0\s[0]Today is July 31st. For some reason that date seems to be significant...\w8 Specifically, July 31, 2011, when The Stanley Parable Original was released. \w8\s[6]It was the beginning of a new era in videogaming...\e"
+	}
+	elseif _today == "4/27"
+	{
+		"\0\s[6]It's a special day today...\w8 Stanley Day! The anniversary of Ultra Deluxe, and also Stanley's employee number, 427.\e"
+	}
+	elseif hour >= 20 && hour <= 24
+	{
+	"\0\s[0]Do I really need to come here at this hour? I was very busy on an important project. Oh well, I suppose I can be here for sometime."
+
+	"\0\s[0]Do I really need to come here at this hour? I was very busy on an important project. Oh well, I suppose I can be here for sometime. What do you want to do now? Watch a movie, play a game...?"
+	}
+	else //Normal boot
+	{
+	"\0\s[6]Another day, another set of problems to solve, dreams to work toward, experiences to live through..."
+
+	"\0\s[0]One day, %(username) woke up, turned on %(their) computer, and booted up the Narrator. Then %(they) opened up %(their) daily programs."
+
+	"\0\s[0]One day, %(username) woke up, turned on %(their) computer, and booted up the Narrator. Then %(they) opened up a brand new program %(they) %(p('were','was')) testing out."
+
+	"\0\s[0]Do I really need to come here at this very moment? I was very busy on an important project. Oh well, I suppose I can be here for sometime."
+
+	"\0\s[0]Do I really need to come here right now? I was very busy on an important project. Oh well, I suppose I can be here for sometime. What do you want to do now? Watch a movie, play a game...?"
+
+	"\0\s[8]The beginning of a new day...\w8 How will you spend it, %(username)?"
+	}
+}
+
+OnClose
+{
+	"\0\s[0]That's alright. I've got more important things to do with my time anyway, like composing brand new stories all about the time you got very lonely and bored without me. Good bye.\w8"
+
+	"\0\s[0]That's alright. I've got m-\w8more important things to do with my time anyway. Bye.\w8"
+
+	"\0\s[0]That's alright. I've got more important things to do with my time anyway. Good bye.\w8"
+
+	"\0\s[0]While I admit it's rather nice of you to keep the computer open for this long, maybe you should go and do something else at some point or another. \s[3]D-\w8don't worry about me; I've got projects to work on and various things to do..."
+	--
+	"\w8\w8\-" //This is what makes the ghost close (after a short pause), do not remove the \- , and MAKE SURE you don't use a \e before this point or it won't work
+}

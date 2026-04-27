@@ -1,0 +1,11 @@
+ghost/master/config.dic
+ghost/master/shiori3.dic
+ghost/master/anchor.dic
+ghost/master/bootend.dic
+ghost/master/etc.dic
+ghost/master/gomi.dll
+ghost/master/mciaudior.dll
+ghost/master/menu.dic
+ghost/master/string.dic
+shell/master/read me.txt
+
